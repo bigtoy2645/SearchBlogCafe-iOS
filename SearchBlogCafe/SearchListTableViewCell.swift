@@ -13,11 +13,18 @@ class SearchListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var type: UILabel!  // Blog/Cafe
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var title: UITextView!
+    @IBOutlet weak var titleView: UITextView!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var thumbnail: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        // 이미지 둥글게
+        self.thumbnail.layer.cornerRadius = 8
+        
+        // 타이틀 최대 2줄
+        titleView.textContainer.maximumNumberOfLines = 2
+        titleView.textContainer.lineBreakMode = .byTruncatingTail
     }
 }

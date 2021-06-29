@@ -7,11 +7,11 @@
 
 import Foundation
 
-public struct BlogData: Codable {
+struct BlogData: Codable {
     let documents: [Blog]
 }
 
-public struct Blog: Codable {
+struct Blog: Codable {
     let blogname: String
     let contents: String
     let datetime: String

@@ -20,6 +20,10 @@
 		1ACB7ED42689E2E0009538EA /* CafeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7ED32689E2E0009538EA /* CafeData.swift */; };
 		1ACB7ED62689E5B5009538EA /* BlogData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7ED52689E5B5009538EA /* BlogData.swift */; };
 		1ACB7ED8268A142F009538EA /* KakaoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7ED7268A142F009538EA /* KakaoAPI.swift */; };
+		1ACB7EDA268AC4A6009538EA /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7ED9268AC4A6009538EA /* PostModel.swift */; };
+		1ACB7EDC268AD2D5009538EA /* ConvertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7EDB268AD2D5009538EA /* ConvertUtil.swift */; };
+		1ACB7EE1268AE702009538EA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7EE0268AE702009538EA /* DetailViewController.swift */; };
+		1ACB7EE3268AF549009538EA /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7EE2268AF549009538EA /* PostViewController.swift */; };
 		3E59A0CFB0C01899067A3235 /* Pods_SearchBlogCafe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3731E09698001E5310B78EE /* Pods_SearchBlogCafe.framework */; };
 		4CBB15B4F1D944612A75D65C /* Pods_SearchBlogCafe_SearchBlogCafeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F82F76E5D49FD87C3E22542 /* Pods_SearchBlogCafe_SearchBlogCafeUITests.framework */; };
 /* End PBXBuildFile section */
@@ -62,6 +66,10 @@
 		1ACB7ED32689E2E0009538EA /* CafeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeData.swift; sourceTree = "<group>"; };
 		1ACB7ED52689E5B5009538EA /* BlogData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogData.swift; sourceTree = "<group>"; };
 		1ACB7ED7268A142F009538EA /* KakaoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAPI.swift; sourceTree = "<group>"; };
+		1ACB7ED9268AC4A6009538EA /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		1ACB7EDB268AD2D5009538EA /* ConvertUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertUtil.swift; sourceTree = "<group>"; };
+		1ACB7EE0268AE702009538EA /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		1ACB7EE2268AF549009538EA /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		30B40E2C94233BE1694E6E29 /* Pods-SearchBlogCafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBlogCafe.release.xcconfig"; path = "Target Support Files/Pods-SearchBlogCafe/Pods-SearchBlogCafe.release.xcconfig"; sourceTree = "<group>"; };
 		3D0B824A966523004DC036FA /* Pods_SearchBlogCafeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchBlogCafeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6592B67987D61C94A974D037 /* Pods-SearchBlogCafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBlogCafe.debug.xcconfig"; path = "Target Support Files/Pods-SearchBlogCafe/Pods-SearchBlogCafe.debug.xcconfig"; sourceTree = "<group>"; };
@@ -147,17 +155,16 @@
 		1ACB7E9E2689CD80009538EA /* SearchBlogCafe */ = {
 			isa = PBXGroup;
 			children = (
+				1ACB7EDF268AD474009538EA /* Resources */,
+				1ACB7EDE268AD454009538EA /* Models */,
+				1ACB7EDD268AD439009538EA /* Utilities */,
 				1ACB7E9F2689CD80009538EA /* AppDelegate.swift */,
 				1ACB7EA32689CD80009538EA /* SearchViewController.swift */,
-				1ACB7EA52689CD80009538EA /* Main.storyboard */,
-				1ACB7EA82689CD82009538EA /* Assets.xcassets */,
-				1ACB7EAA2689CD82009538EA /* LaunchScreen.storyboard */,
-				1ACB7EAD2689CD82009538EA /* Info.plist */,
 				1ACB7ECF2689D4DA009538EA /* SearchListTableViewCell.swift */,
 				1ACB7ED02689D4DA009538EA /* SearchListTableViewCell.xib */,
-				1ACB7ED32689E2E0009538EA /* CafeData.swift */,
-				1ACB7ED52689E5B5009538EA /* BlogData.swift */,
-				1ACB7ED7268A142F009538EA /* KakaoAPI.swift */,
+				1ACB7EAD2689CD82009538EA /* Info.plist */,
+				1ACB7EE0268AE702009538EA /* DetailViewController.swift */,
+				1ACB7EE2268AF549009538EA /* PostViewController.swift */,
 			);
 			path = SearchBlogCafe;
 			sourceTree = "<group>";
@@ -178,6 +185,35 @@
 				1ACB7EC32689CD82009538EA /* Info.plist */,
 			);
 			path = SearchBlogCafeUITests;
+			sourceTree = "<group>";
+		};
+		1ACB7EDD268AD439009538EA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1ACB7ED7268A142F009538EA /* KakaoAPI.swift */,
+				1ACB7EDB268AD2D5009538EA /* ConvertUtil.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		1ACB7EDE268AD454009538EA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1ACB7ED32689E2E0009538EA /* CafeData.swift */,
+				1ACB7ED52689E5B5009538EA /* BlogData.swift */,
+				1ACB7ED9268AC4A6009538EA /* PostModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		1ACB7EDF268AD474009538EA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1ACB7EA82689CD82009538EA /* Assets.xcassets */,
+				1ACB7EA52689CD80009538EA /* Main.storyboard */,
+				1ACB7EAA2689CD82009538EA /* LaunchScreen.storyboard */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,10 +455,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ACB7EE1268AE702009538EA /* DetailViewController.swift in Sources */,
 				1ACB7ED8268A142F009538EA /* KakaoAPI.swift in Sources */,
 				1ACB7ED42689E2E0009538EA /* CafeData.swift in Sources */,
 				1ACB7ED12689D4DA009538EA /* SearchListTableViewCell.swift in Sources */,
+				1ACB7EE3268AF549009538EA /* PostViewController.swift in Sources */,
+				1ACB7EDA268AC4A6009538EA /* PostModel.swift in Sources */,
 				1ACB7ED62689E5B5009538EA /* BlogData.swift in Sources */,
+				1ACB7EDC268AD2D5009538EA /* ConvertUtil.swift in Sources */,
 				1ACB7EA42689CD80009538EA /* SearchViewController.swift in Sources */,
 				1ACB7EA02689CD80009538EA /* AppDelegate.swift in Sources */,
 			);
