@@ -26,6 +26,9 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Cafe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHg-Pr-RRp">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="GgD-LD-X4C"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" systemColor="systemGrayColor"/>
                                         <nil key="highlightedColor"/>
@@ -39,7 +42,6 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="i2T-u1-F6X" firstAttribute="leading" secondItem="cHg-Pr-RRp" secondAttribute="trailing" constant="5" id="6BO-qq-MVG"/>
-                                    <constraint firstItem="cHg-Pr-RRp" firstAttribute="leading" secondItem="L2m-JM-4fV" secondAttribute="leading" id="AQb-sw-gU6"/>
                                 </constraints>
                             </stackView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Title Title Title Title Title Title Title Title Title Title Title Title" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x1G-Dg-Smw">

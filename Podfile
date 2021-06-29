@@ -7,6 +7,7 @@ target 'SearchBlogCafe' do
 
   # Pods for SearchBlogCafe
   pod 'Alamofire', '~> 5.4'
+  pod 'DropDown'
 
   target 'SearchBlogCafeTests' do
     inherit! :search_paths

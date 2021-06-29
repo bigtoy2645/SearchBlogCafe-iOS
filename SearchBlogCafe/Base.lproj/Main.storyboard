@@ -28,9 +28,8 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="fjL-iL-RF0"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Xl4-Ur-62e">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xl4-Ur-62e">
                                 <rect key="frame" x="0.0" y="139" width="414" height="757"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="aZS-iV-BhG">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -216,6 +215,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="0Ff-w9-okx">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                            </activityIndicatorView>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PCk-wH-8fh">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -230,13 +232,16 @@
                         <constraints>
                             <constraint firstItem="PCk-wH-8fh" firstAttribute="leading" secondItem="SOb-of-3rC" secondAttribute="leading" id="AbX-PU-Cue"/>
                             <constraint firstItem="PCk-wH-8fh" firstAttribute="top" secondItem="SOb-of-3rC" secondAttribute="top" id="FeJ-90-SDY"/>
+                            <constraint firstItem="0Ff-w9-okx" firstAttribute="centerX" secondItem="ONi-gJ-hpU" secondAttribute="centerX" id="Wf2-9P-4Dh"/>
                             <constraint firstAttribute="bottom" secondItem="PCk-wH-8fh" secondAttribute="bottom" id="fJr-Ca-tki"/>
+                            <constraint firstItem="0Ff-w9-okx" firstAttribute="centerY" secondItem="ONi-gJ-hpU" secondAttribute="centerY" id="pY8-hF-moz"/>
                             <constraint firstItem="SOb-of-3rC" firstAttribute="trailing" secondItem="PCk-wH-8fh" secondAttribute="trailing" id="zZv-qs-i07"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="M1k-W9-7Fy"/>
                     <connections>
-                        <outlet property="webView" destination="PCk-wH-8fh" id="Tis-u1-avQ"/>
+                        <outlet property="indicator" destination="0Ff-w9-okx" id="ePO-gp-PTR"/>
+                        <outlet property="webView" destination="PCk-wH-8fh" id="G2v-GU-8KE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W2J-de-1TY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

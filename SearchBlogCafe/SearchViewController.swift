@@ -7,6 +7,7 @@
 
 import UIKit
 import Alamofire
+import DropDown
 
 enum FilterType: Int {
     case blog = 0x01
@@ -23,6 +24,7 @@ class SearchViewController: UIViewController {
     
     var posts = [PostModel]()
     var filterType = FilterType.all
+    var dropDown = DropDown()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,23 @@ class SearchViewController: UIViewController {
         
         // 필터 버튼 둥글게
         filterButton.layer.cornerRadius = 8
+        
+        // 필터 설정
+        dropDown.dataSource = ["All", "Blog", "Cafe"]
+        dropDown.anchorView = filterButton
+        dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
+        dropDown.cornerRadius = 8
+        dropDown.backgroundColor = filterButton.backgroundColor
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            filterButton.setTitle(item, for: .normal)
+            if index == 0       { filterType = FilterType.all }
+            else if index == 1  { filterType = FilterType.blog }
+            else if index == 2  { filterType = FilterType.cafe }
+            self.dropDown.clearSelection()
+            if let currentSearchText = searchBar.text {
+                self.search(for: currentSearchText, type: filterType)
+            }
+        }
     }
     
     /* 검색 버튼 클릭 */
@@ -47,7 +66,7 @@ class SearchViewController: UIViewController {
     
     /* 필터 타입 변경 */
     @IBAction func filterButtonPressed(_ sender: UIButton) {
-        // TODO
+        dropDown.show()
     }
     
     /* 정렬 타입 변경 */
