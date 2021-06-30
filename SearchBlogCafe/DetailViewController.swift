@@ -29,10 +29,6 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 타이틀 최대 2줄
-        titleView.textContainer.maximumNumberOfLines = 2
-        titleView.textContainer.lineBreakMode = .byTruncatingTail
-        
         loadData()
     }
     
@@ -45,9 +41,9 @@ class DetailViewController: UIViewController {
             self.thumbnail.image = UIImage(data: thumbnail)
             self.thumbnail.layer.cornerRadius = 8
         }
-        titleView.text = post.title
         date.text = DateUtil.formatDate(post.date, style: .long)
-        contents.text = post.contents
+        titleView.attributedText = post.title.appendHtmlFont(size: 17).htmlAttributedString()
+        contents.attributedText = post.contents.appendHtmlFont(size: 15).htmlAttributedString()
         url.text = post.url
     }
     

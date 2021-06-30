@@ -22,9 +22,5 @@ class SearchListTableViewCell: UITableViewCell {
         
         // 이미지 둥글게
         self.thumbnail.layer.cornerRadius = 8
-        
-        // 타이틀 최대 2줄
-        titleView.textContainer.maximumNumberOfLines = 2
-        titleView.textContainer.lineBreakMode = .byTruncatingTail
     }
 }

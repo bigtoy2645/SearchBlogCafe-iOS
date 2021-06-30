@@ -26,7 +26,7 @@ class PostViewController: UIViewController, WKNavigationDelegate {
         
         webView.navigationDelegate = self
         
-        self.title = post.title
+        self.title = post.title.htmlEscaped()
         let request = URLRequest(url: link)
         webView.load(request)
     }

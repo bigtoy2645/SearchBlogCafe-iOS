@@ -122,9 +122,7 @@ class SearchViewController: UIViewController {
         
         // 검색 내용이 없으면 초기화
         if content.isEmpty {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            DispatchQueue.main.async { self.tableView.reloadData() }
             return
         }
         
@@ -223,13 +221,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             cell.thumbnail.image = UIImage(data: thumbnail)
         }
         
-        let postTitle = String(format:"<span style=\"font-size: 15;\">%@</span>", posts[indexPath.row].title)
-        if let data = postTitle.data(using: .utf16),
-           let attributedTitle = try? NSAttributedString(data: data,
-                                                         options: [.documentType: NSAttributedString.DocumentType.html],
-                                                         documentAttributes: nil) {
-            cell.titleView.attributedText = attributedTitle
-        }
+        // 타이틀 HTML 설정
+        let titleWithFont = posts[indexPath.row].title.appendHtmlFont(size: 15)
+        cell.titleView.attributedText = titleWithFont.htmlAttributedString()
         
         return cell
     }
