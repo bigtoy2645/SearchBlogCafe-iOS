@@ -15,6 +15,10 @@ enum FilterType: Int {
     case all = 0xFF
 }
 
+protocol DetailDelegate {
+    func didOpenURL(indexPath: IndexPath?)
+}
+
 class SearchViewController: UIViewController {
     
     @IBOutlet weak var searchField: UITextField!
@@ -86,6 +90,9 @@ class SearchViewController: UIViewController {
             searchDropDown.dataSource.remove(at: idx)
         }
         searchDropDown.dataSource.insert(currentSearchText, at: 0)
+        
+        // 테이블 구분선 추가
+        tableView.separatorStyle = .singleLine
     }
     
     /* 필터 타입 변경 */
@@ -171,7 +178,7 @@ class SearchViewController: UIViewController {
         do {
             let data = try decoder.decode(BlogData.self, from: blogData)
             for post in data.documents {
-                blogPosts.append(PostModel(type: FilterType.blog, name: post.blogname, contents: post.contents,
+                blogPosts.append(PostModel(type: FilterType.blog, name: post.blogname, contents: post.contents.htmlEscaped(),
                                            date: DateUtil.parseDate(post.datetime), thumbnail: post.thumbnail, title: post.title.htmlEscaped(), url: post.url))
             }
         } catch {
@@ -189,7 +196,7 @@ class SearchViewController: UIViewController {
         do {
             let data = try decoder.decode(CafeData.self, from: cafeData)
             for post in data.documents {
-                cafePosts.append(PostModel(type: FilterType.cafe, name: post.cafename, contents: post.contents,
+                cafePosts.append(PostModel(type: FilterType.cafe, name: post.cafename, contents: post.contents.htmlEscaped(),
                                            date: DateUtil.parseDate(post.datetime), thumbnail: post.thumbnail, title: post.title.htmlEscaped(), url: post.url))
             }
         } catch {
@@ -215,30 +222,26 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         
         // Cell 설정
         cell.name.text = posts[indexPath.row].name
+        cell.titleView.text = posts[indexPath.row].title
         cell.date.text = DateUtil.formatDate(posts[indexPath.row].date, style: .short)
         if let thumbnail = posts[indexPath.row].thumbnailData {
             cell.thumbnail.image = UIImage(data: thumbnail)
         }
         
-        // 타이틀 HTML 제거
-        cell.titleView.text = posts[indexPath.row].title
+        // 읽음 처리
+        cell.contentView.alpha = posts[indexPath.row].isRead ? 0.3 : 1.0
         
         return cell
     }
     
     /* 검색 목록 클릭 시 디테일 화면으로 이동 */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let post = posts[indexPath.row]
-        performSegue(withIdentifier: DetailViewController.segueID, sender: post)
-    }
-    
-    /* DetailViewController 설정 */
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == DetailViewController.segueID,
-            let post = sender as? PostModel,
-            let detailVC = segue.destination as? DetailViewController {
-                detailVC.post = post
-        }
+        guard let detailVC = self.storyboard?.instantiateViewController(withIdentifier: DetailViewController.storyboardID) as? DetailViewController else { return }
+        detailVC.indexPath = indexPath
+        detailVC.delegate = self
+        detailVC.post = posts[indexPath.row]
+        
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
@@ -254,5 +257,19 @@ extension SearchViewController: UITextFieldDelegate {
     /* 입력 후 이전 검색 기록 숨기기 */
     func textFieldDidEndEditing(_ textField: UITextField) {
         searchDropDown.hide()
+    }
+}
+
+// MARK: - DetailDelegate
+extension SearchViewController: DetailDelegate {
+    
+    /* 포스트 읽음 처리 */
+    func didOpenURL(indexPath: IndexPath?) {
+        guard let indexPath = indexPath else { return }
+        
+        posts[indexPath.row].isRead = true
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }

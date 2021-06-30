@@ -25,5 +25,9 @@ class SearchListTableViewCell: UITableViewCell {
         
         // UITextView 여백 제거
         titleView.removeTextPadding()
+        
+        // 타이틀 최대 2줄
+        titleView.textContainer.maximumNumberOfLines = 2
+        titleView.textContainer.lineBreakMode = .byTruncatingTail
     }
 }

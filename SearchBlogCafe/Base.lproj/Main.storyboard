@@ -110,7 +110,7 @@
                         <outlet property="filterView" destination="aZS-iV-BhG" id="2Xe-tu-3zk"/>
                         <outlet property="searchField" destination="9CG-24-tXf" id="H7l-pr-fyC"/>
                         <outlet property="tableView" destination="Xl4-Ur-62e" id="o77-7C-JQN"/>
-                        <segue destination="KY7-xD-JHa" kind="show" identifier="DetailView" id="GWP-Mc-pm4"/>
+                        <segue destination="KY7-xD-JHa" kind="show" identifier="" id="GWP-Mc-pm4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -120,7 +120,7 @@
         <!--Detail View Controller-->
         <scene sceneID="5xM-Ay-GR3">
             <objects>
-                <viewController id="KY7-xD-JHa" customClass="DetailViewController" customModule="SearchBlogCafe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailView" id="KY7-xD-JHa" customClass="DetailViewController" customModule="SearchBlogCafe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rLu-lU-MiM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

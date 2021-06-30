@@ -136,6 +136,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1A333EC5268CBF780045B971 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				1ACB7EE4268C47EC009538EA /* String+Html.swift */,
+				1A333EBE268C6C5E0045B971 /* UITextView+Padding.swift */,
+				1A333EC3268CBB5E0045B971 /* UITableView+Empty.swift */,
+			);
+			name = Extentions;
+			sourceTree = "<group>";
+		};
 		1ACB7E932689CD80009538EA = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +174,7 @@
 				1ACB7EDF268AD474009538EA /* Resources */,
 				1ACB7EDE268AD454009538EA /* Models */,
 				1ACB7EDD268AD439009538EA /* Utilities */,
+				1A333EC5268CBF780045B971 /* Extentions */,
 				1ACB7E9F2689CD80009538EA /* AppDelegate.swift */,
 				1ACB7EA32689CD80009538EA /* SearchViewController.swift */,
 				1ACB7ECF2689D4DA009538EA /* SearchListTableViewCell.swift */,
@@ -171,9 +182,6 @@
 				1ACB7EAD2689CD82009538EA /* Info.plist */,
 				1ACB7EE0268AE702009538EA /* DetailViewController.swift */,
 				1ACB7EE2268AF549009538EA /* PostViewController.swift */,
-				1ACB7EE4268C47EC009538EA /* String+Html.swift */,
-				1A333EBE268C6C5E0045B971 /* UITextView+Padding.swift */,
-				1A333EC3268CBB5E0045B971 /* UITableView+Empty.swift */,
 			);
 			path = SearchBlogCafe;
 			sourceTree = "<group>";

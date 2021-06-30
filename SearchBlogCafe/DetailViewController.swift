@@ -16,9 +16,11 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var url: UILabel!
     
-    static let segueID = "DetailView"
+    static let storyboardID = "DetailView"
     
+    var delegate: DetailDelegate?
     var post: PostModel?
+    var indexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,10 @@ class DetailViewController: UIViewController {
         // UITextView 여백 제거
         titleView.removeTextPadding()
         contents.removeTextPadding()
+        
+        // 타이틀 최대 2줄
+        titleView.textContainer.maximumNumberOfLines = 2
+        titleView.textContainer.lineBreakMode = .byTruncatingTail
     }
     
     /* 데이터 불러오기 */
@@ -51,6 +57,7 @@ class DetailViewController: UIViewController {
     @IBAction func linkButtonPressed(_ sender: UIButton) {
         guard let post = self.post else { return }
         performSegue(withIdentifier: PostViewController.segueID, sender: post)
+        delegate?.didOpenURL(indexPath: indexPath)
     }
     
     /* PostViewController 설정 */
