@@ -12,7 +12,7 @@ struct PostModel {
     let name: String
     let contents: String
     let date: Date
-    let thumbnail: Data?
+    let thumbnail: String
     let title: String
     let url: String
     
@@ -24,5 +24,16 @@ struct PostModel {
             return "Cafe"
         }
         return ""
+    }
+    var thumbnailData: Data? {
+        var data: Data?
+        if let url = URL(string: thumbnail) {
+            do {
+                data = try Data(contentsOf: url)
+            } catch {
+                print("Failed to get thumbnail data from url. error = \(error.localizedDescription)")
+            }
+        }
+        return data
     }
 }

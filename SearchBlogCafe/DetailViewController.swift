@@ -41,12 +41,12 @@ class DetailViewController: UIViewController {
         
         self.title = post.typeString
         name.text = post.name
-        if let thumbnail = post.thumbnail {
+        if let thumbnail = post.thumbnailData {
             self.thumbnail.image = UIImage(data: thumbnail)
             self.thumbnail.layer.cornerRadius = 8
         }
         titleView.text = post.title
-        date.text = ConvertUtil.formatDate(post.date)
+        date.text = DateUtil.formatDate(post.date, style: .long)
         contents.text = post.contents
         url.text = post.url
     }

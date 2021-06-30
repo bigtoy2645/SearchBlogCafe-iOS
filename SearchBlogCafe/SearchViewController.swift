@@ -17,14 +17,15 @@ enum FilterType: Int {
 
 class SearchViewController: UIViewController {
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var filterButton: UIButton!
     
     var posts = [PostModel]()
     var filterType = FilterType.all
-    var dropDown = DropDown()
+    var filterDropDown = DropDown()
+    var searchDropDown = DropDown()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,37 +37,57 @@ class SearchViewController: UIViewController {
         // 필터 & 정렬 뷰 추가
         tableView.tableHeaderView = filterView
         
-        // 필터 버튼 둥글게
+        // 필터 버튼 설정
         filterButton.layer.cornerRadius = 8
+        filterButton.layer.borderWidth = 0.5
+        filterButton.layer.borderColor = UIColor.systemTeal.cgColor
         
         // 필터 설정
-        dropDown.dataSource = ["All", "Blog", "Cafe"]
-        dropDown.anchorView = filterButton
-        dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
-        dropDown.cornerRadius = 8
-        dropDown.backgroundColor = filterButton.backgroundColor
-        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+        filterDropDown.dataSource = ["All", "Blog", "Cafe"]
+        filterDropDown.anchorView = filterButton
+        filterDropDown.bottomOffset = CGPoint(x: 0, y:(filterDropDown.anchorView?.plainView.bounds.height)!)
+        filterDropDown.cornerRadius = 8
+        filterDropDown.backgroundColor = .white
+        filterDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             filterButton.setTitle(item, for: .normal)
             if index == 0       { filterType = FilterType.all }
             else if index == 1  { filterType = FilterType.blog }
             else if index == 2  { filterType = FilterType.cafe }
-            self.dropDown.clearSelection()
-            if let currentSearchText = searchBar.text {
-                self.search(for: currentSearchText, type: filterType)
-            }
+            filterDropDown.clearSelection()
+            searchButtonPressed(self)
+        }
+        
+        // 이전 검색 목록 설정
+        searchDropDown.dataSource = []
+        searchDropDown.anchorView = searchField
+        searchDropDown.bottomOffset = CGPoint(x: 0, y:(searchDropDown.anchorView?.plainView.bounds.height)!)
+        searchDropDown.cornerRadius = 8
+        searchDropDown.backgroundColor = .white
+        searchDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            searchField.text = item
+            searchDropDown.clearSelection()
+            searchButtonPressed(self)
         }
     }
     
     /* 검색 버튼 클릭 */
-    @IBAction func searchButtonPressed(_ sender: UIButton) {
-        guard let currentSearchText = searchBar.text else { return }
+    @IBAction func searchButtonPressed(_ sender: Any) {
+        guard let currentSearchText = searchField.text else { return }
         
+        // 검색
         search(for: currentSearchText, type: filterType)
+        if currentSearchText.isEmpty { return }
+        
+        // 이전 검색 목록에 추가
+        if let idx = searchDropDown.dataSource.firstIndex(of: currentSearchText) {
+            searchDropDown.dataSource.remove(at: idx)
+        }
+        searchDropDown.dataSource.insert(currentSearchText, at: 0)
     }
     
     /* 필터 타입 변경 */
     @IBAction func filterButtonPressed(_ sender: UIButton) {
-        dropDown.show()
+        filterDropDown.show()
     }
     
     /* 정렬 타입 변경 */
@@ -99,6 +120,14 @@ class SearchViewController: UIViewController {
         // 포스트 초기화
         posts.removeAll()
         
+        // 검색 내용이 없으면 초기화
+        if content.isEmpty {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            return
+        }
+        
         // Blog 검색
         if ((type.rawValue & FilterType.blog.rawValue) != 0) {
             AF.request(KakaoAPI.blog, method: .get,
@@ -111,7 +140,6 @@ class SearchViewController: UIViewController {
                         self.posts.sort { post1, post2 in
                             return post1.title > post2.title
                         }
-                        // TODO - Cafe, Blog 검색 후 한번에 reload
                         self.tableView.reloadData()
                     case .failure(let error):
                         print(error)
@@ -147,7 +175,7 @@ class SearchViewController: UIViewController {
             let data = try decoder.decode(BlogData.self, from: blogData)
             for post in data.documents {
                 blogPosts.append(PostModel(type: FilterType.blog, name: post.blogname, contents: post.contents,
-                                           date: ConvertUtil.parseDate(post.datetime), thumbnail: ConvertUtil.getDataFrom(url: post.thumbnail), title: post.title, url: post.url))
+                                           date: DateUtil.parseDate(post.datetime), thumbnail: post.thumbnail, title: post.title, url: post.url))
             }
         } catch {
             print("Faile to get data from blog. \(error.localizedDescription)")
@@ -165,7 +193,7 @@ class SearchViewController: UIViewController {
             let data = try decoder.decode(CafeData.self, from: cafeData)
             for post in data.documents {
                 cafePosts.append(PostModel(type: FilterType.cafe, name: post.cafename, contents: post.contents,
-                                           date: ConvertUtil.parseDate(post.datetime), thumbnail: ConvertUtil.getDataFrom(url: post.thumbnail), title: post.title, url: post.url))
+                                           date: DateUtil.parseDate(post.datetime), thumbnail: post.thumbnail, title: post.title, url: post.url))
             }
         } catch {
             print("Faile to get data from cafe. \(error.localizedDescription)")
@@ -190,18 +218,18 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         
         // Cell 설정
         cell.name.text = posts[indexPath.row].name
-        cell.date.text = ConvertUtil.formatDate(posts[indexPath.row].date)
-        if let thumbnail = posts[indexPath.row].thumbnail {
+        cell.date.text = DateUtil.formatDate(posts[indexPath.row].date, style: .short)
+        if let thumbnail = posts[indexPath.row].thumbnailData {
             cell.thumbnail.image = UIImage(data: thumbnail)
         }
-        cell.type.text = posts[indexPath.row].typeString
-//        if let data = posts[indexPath.row].title.data(using: .utf16) {
-//            cell.titleView.attributedText = try? NSAttributedString(
-//                data: data,
-//                options: [.documentType: NSAttributedString.DocumentType.html],
-//                documentAttributes: nil)
-//        }
-        cell.titleView.text = posts[indexPath.row].title
+        
+        let postTitle = String(format:"<span style=\"font-size: 15;\">%@</span>", posts[indexPath.row].title)
+        if let data = postTitle.data(using: .utf16),
+           let attributedTitle = try? NSAttributedString(data: data,
+                                                         options: [.documentType: NSAttributedString.DocumentType.html],
+                                                         documentAttributes: nil) {
+            cell.titleView.attributedText = attributedTitle
+        }
         
         return cell
     }
@@ -221,17 +249,17 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-// MARK: - UISearchBarDelegate
+// MARK: - UITextFieldDelegate
 
-extension SearchViewController: UISearchBarDelegate {
+extension SearchViewController: UITextFieldDelegate {
     
-    /* 기존 검색 목록 표시 */
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
-        // TODO - 키워드 선택 시 검색
-        self.searchBar.text = searchBar.text
-        if let currentSearchText = self.searchBar.text {
-            search(for: currentSearchText, type: filterType)
-        }
+    /* 입력 시 이전 검색 기록 표시 */
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        searchDropDown.show()
+    }
+    
+    /* 입력 중 이전 검색 기록 표시 */
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        searchDropDown.show()
     }
 }

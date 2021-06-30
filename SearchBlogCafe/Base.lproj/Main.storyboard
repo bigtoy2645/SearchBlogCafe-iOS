@@ -17,19 +17,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="cE6-9A-tEY">
-                                <rect key="frame" x="0.0" y="88" width="356" height="51"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <scopeButtonTitles>
-                                    <string>Title</string>
-                                    <string>Title</string>
-                                </scopeButtonTitles>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="fjL-iL-RF0"/>
-                                </connections>
-                            </searchBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="R0E-KI-DEG">
+                                <rect key="frame" x="10" y="98" width="394" height="34"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="검색어 입력" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9CG-24-tXf">
+                                        <rect key="frame" x="0.0" y="0.0" width="364" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="mM6-cy-zAA"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8GT-Vj-KJC">
+                                        <rect key="frame" x="374" y="0.0" width="20" height="34"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <state key="normal" image="magnifyingglass" catalog="system"/>
+                                        <connections>
+                                            <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dD6-Th-V4g"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="9CG-24-tXf" firstAttribute="leading" secondItem="R0E-KI-DEG" secondAttribute="leading" id="MNQ-VK-D5q"/>
+                                    <constraint firstAttribute="trailing" secondItem="8GT-Vj-KJC" secondAttribute="trailing" id="Zvd-N0-Vmr"/>
+                                </constraints>
+                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xl4-Ur-62e">
-                                <rect key="frame" x="0.0" y="139" width="414" height="757"/>
+                                <rect key="frame" x="0.0" y="142" width="414" height="754"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="aZS-iV-BhG">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -39,7 +53,6 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VBI-Qu-nEa">
                                                     <rect key="frame" x="0.0" y="0.0" width="354" height="40"/>
-                                                    <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <state key="normal" title="All">
                                                         <color key="titleColor" systemColor="labelColor"/>
@@ -78,33 +91,24 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="gKc-l9-fes"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8GT-Vj-KJC">
-                                <rect key="frame" x="356" y="98.5" width="48" height="30"/>
-                                <state key="normal" title="Search"/>
-                                <connections>
-                                    <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dD6-Th-V4g"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Xl4-Ur-62e" secondAttribute="bottom" id="4zr-2u-55C"/>
-                            <constraint firstItem="8GT-Vj-KJC" firstAttribute="centerY" secondItem="cE6-9A-tEY" secondAttribute="centerY" id="7uX-sX-Rag"/>
-                            <constraint firstItem="Xl4-Ur-62e" firstAttribute="top" secondItem="cE6-9A-tEY" secondAttribute="bottom" id="GSA-C3-fS5"/>
-                            <constraint firstItem="cE6-9A-tEY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="JJD-De-KKR"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8GT-Vj-KJC" secondAttribute="trailing" constant="10" id="MYP-Zk-z7m"/>
-                            <constraint firstItem="8GT-Vj-KJC" firstAttribute="leading" secondItem="cE6-9A-tEY" secondAttribute="trailing" id="QQM-6Q-GMl"/>
+                            <constraint firstItem="R0E-KI-DEG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="5JF-xo-7aX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="R0E-KI-DEG" secondAttribute="trailing" constant="10" id="8vc-GD-CxY"/>
+                            <constraint firstItem="Xl4-Ur-62e" firstAttribute="top" secondItem="R0E-KI-DEG" secondAttribute="bottom" constant="10" id="Z5g-sK-oUL"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Xl4-Ur-62e" secondAttribute="trailing" id="dE3-6Y-HKF"/>
+                            <constraint firstItem="R0E-KI-DEG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="iQV-jH-xaE"/>
                             <constraint firstItem="Xl4-Ur-62e" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vhT-BA-c9O"/>
-                            <constraint firstItem="cE6-9A-tEY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="w25-c7-MK7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="niI-i0-uOV"/>
                     <connections>
                         <outlet property="filterButton" destination="VBI-Qu-nEa" id="kVs-Om-7Vq"/>
                         <outlet property="filterView" destination="aZS-iV-BhG" id="2Xe-tu-3zk"/>
-                        <outlet property="searchBar" destination="cE6-9A-tEY" id="VNJ-jE-vQX"/>
+                        <outlet property="searchField" destination="9CG-24-tXf" id="H7l-pr-fyC"/>
                         <outlet property="tableView" destination="Xl4-Ur-62e" id="o77-7C-JQN"/>
                         <segue destination="KY7-xD-JHa" kind="show" identifier="DetailView" id="GWP-Mc-pm4"/>
                     </connections>
@@ -269,14 +273,12 @@
     </scenes>
     <resources>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
