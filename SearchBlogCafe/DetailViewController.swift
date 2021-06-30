@@ -41,8 +41,8 @@ class DetailViewController: UIViewController {
             self.thumbnail.layer.cornerRadius = 8
         }
         date.text = DateUtil.formatDate(post.date, style: .long)
-        titleView.text = post.title.htmlEscaped()
-        contents.text = post.contents.htmlEscaped()
+        titleView.text = post.title
+        contents.text = post.contents
         
         url.text = post.url
     }

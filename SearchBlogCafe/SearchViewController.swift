@@ -97,7 +97,7 @@ class SearchViewController: UIViewController {
     @IBAction func sortButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "가나다순", style: .default, handler: { action in
-            self.posts.sort { $0.title > $1.title }
+            self.posts.sort { $0.title < $1.title }
             self.tableView.reloadData()
         }))
         alert.addAction(UIAlertAction(title: "최신순", style: .default, handler: { action in
@@ -138,9 +138,7 @@ class SearchViewController: UIViewController {
                     case .success:
                         guard let result = response.data else { return }
                         self.posts.append(contentsOf: self.parseJSON(blogData: result))
-                        self.posts.sort { post1, post2 in
-                            return post1.title > post2.title
-                        }
+                        self.posts.sort { $0.title < $1.title }
                         self.tableView.reloadData()
                     case .failure(let error):
                         print(error)
@@ -156,9 +154,7 @@ class SearchViewController: UIViewController {
                     case .success:
                         guard let result = response.data else { return }
                         self.posts.append(contentsOf: self.parseJSON(cafeData: result))
-                        self.posts.sort { post1, post2 in
-                            return post1.title > post2.title
-                        }
+                        self.posts.sort { $0.title < $1.title }
                         self.tableView.reloadData()
                     case .failure(let error):
                         print(error)
@@ -176,7 +172,7 @@ class SearchViewController: UIViewController {
             let data = try decoder.decode(BlogData.self, from: blogData)
             for post in data.documents {
                 blogPosts.append(PostModel(type: FilterType.blog, name: post.blogname, contents: post.contents,
-                                           date: DateUtil.parseDate(post.datetime), thumbnail: post.thumbnail, title: post.title, url: post.url))
+                                           date: DateUtil.parseDate(post.datetime), thumbnail: post.thumbnail, title: post.title.htmlEscaped(), url: post.url))
             }
         } catch {
             print("Faile to get data from blog. \(error.localizedDescription)")
@@ -194,7 +190,7 @@ class SearchViewController: UIViewController {
             let data = try decoder.decode(CafeData.self, from: cafeData)
             for post in data.documents {
                 cafePosts.append(PostModel(type: FilterType.cafe, name: post.cafename, contents: post.contents,
-                                           date: DateUtil.parseDate(post.datetime), thumbnail: post.thumbnail, title: post.title, url: post.url))
+                                           date: DateUtil.parseDate(post.datetime), thumbnail: post.thumbnail, title: post.title.htmlEscaped(), url: post.url))
             }
         } catch {
             print("Faile to get data from cafe. \(error.localizedDescription)")
@@ -225,7 +221,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         // 타이틀 HTML 제거
-        cell.titleView.text = posts[indexPath.row].title.htmlEscaped()
+        cell.titleView.text = posts[indexPath.row].title
         
         return cell
     }
