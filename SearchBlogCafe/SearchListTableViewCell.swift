@@ -22,5 +22,8 @@ class SearchListTableViewCell: UITableViewCell {
         
         // 이미지 둥글게
         self.thumbnail.layer.cornerRadius = 8
+        
+        // UITextView 여백 제거
+        titleView.removeTextPadding()
     }
 }

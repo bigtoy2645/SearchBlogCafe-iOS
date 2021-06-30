@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0F864DE583FB666F8FE33C60 /* Pods_SearchBlogCafeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0B824A966523004DC036FA /* Pods_SearchBlogCafeTests.framework */; };
+		1A333EBF268C6C5E0045B971 /* UITextView+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EBE268C6C5E0045B971 /* UITextView+Padding.swift */; };
+		1A333EC4268CBB5E0045B971 /* UITableView+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC3268CBB5E0045B971 /* UITableView+Empty.swift */; };
 		1ACB7EA02689CD80009538EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7E9F2689CD80009538EA /* AppDelegate.swift */; };
 		1ACB7EA42689CD80009538EA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7EA32689CD80009538EA /* SearchViewController.swift */; };
 		1ACB7EA72689CD80009538EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ACB7EA52689CD80009538EA /* Main.storyboard */; };
@@ -49,6 +51,8 @@
 /* Begin PBXFileReference section */
 		121C7420F03A98ECCC39810C /* Pods-SearchBlogCafe-SearchBlogCafeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBlogCafe-SearchBlogCafeUITests.debug.xcconfig"; path = "Target Support Files/Pods-SearchBlogCafe-SearchBlogCafeUITests/Pods-SearchBlogCafe-SearchBlogCafeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		13FC1671A42E3966AA2EACC6 /* Pods-SearchBlogCafeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBlogCafeTests.debug.xcconfig"; path = "Target Support Files/Pods-SearchBlogCafeTests/Pods-SearchBlogCafeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1A333EBE268C6C5E0045B971 /* UITextView+Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Padding.swift"; sourceTree = "<group>"; };
+		1A333EC3268CBB5E0045B971 /* UITableView+Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Empty.swift"; sourceTree = "<group>"; };
 		1ACB7E9C2689CD80009538EA /* SearchBlogCafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchBlogCafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACB7E9F2689CD80009538EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1ACB7EA32689CD80009538EA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +172,8 @@
 				1ACB7EE0268AE702009538EA /* DetailViewController.swift */,
 				1ACB7EE2268AF549009538EA /* PostViewController.swift */,
 				1ACB7EE4268C47EC009538EA /* String+Html.swift */,
+				1A333EBE268C6C5E0045B971 /* UITextView+Padding.swift */,
+				1A333EC3268CBB5E0045B971 /* UITableView+Empty.swift */,
 			);
 			path = SearchBlogCafe;
 			sourceTree = "<group>";
@@ -461,8 +467,10 @@
 				1ACB7EE1268AE702009538EA /* DetailViewController.swift in Sources */,
 				1ACB7ED8268A142F009538EA /* KakaoAPI.swift in Sources */,
 				1ACB7ED42689E2E0009538EA /* CafeData.swift in Sources */,
+				1A333EBF268C6C5E0045B971 /* UITextView+Padding.swift in Sources */,
 				1ACB7ED12689D4DA009538EA /* SearchListTableViewCell.swift in Sources */,
 				1ACB7EE5268C47EC009538EA /* String+Html.swift in Sources */,
+				1A333EC4268CBB5E0045B971 /* UITableView+Empty.swift in Sources */,
 				1ACB7EE3268AF549009538EA /* PostViewController.swift in Sources */,
 				1ACB7EDA268AC4A6009538EA /* PostModel.swift in Sources */,
 				1ACB7ED62689E5B5009538EA /* BlogData.swift in Sources */,

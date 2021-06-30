@@ -34,6 +34,9 @@ class SearchViewController: UIViewController {
         let nibName = UINib(nibName: SearchListTableViewCell.nibName, bundle: nil)
         tableView.register(nibName, forCellReuseIdentifier: SearchListTableViewCell.cellID)
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 85
+        tableView.setEmptyView(title: "검색 결과가 없습니다.")
+        
         // 필터 & 정렬 뷰 추가
         tableView.tableHeaderView = filterView
         
@@ -221,9 +224,8 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             cell.thumbnail.image = UIImage(data: thumbnail)
         }
         
-        // 타이틀 HTML 설정
-        let titleWithFont = posts[indexPath.row].title.appendHtmlFont(size: 15)
-        cell.titleView.attributedText = titleWithFont.htmlAttributedString()
+        // 타이틀 HTML 제거
+        cell.titleView.text = posts[indexPath.row].title.htmlEscaped()
         
         return cell
     }
@@ -234,6 +236,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         performSegue(withIdentifier: DetailViewController.segueID, sender: post)
     }
     
+    /* DetailViewController 설정 */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == DetailViewController.segueID,
             let post = sender as? PostModel,
@@ -247,13 +250,13 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension SearchViewController: UITextFieldDelegate {
     
-    /* 입력 시 이전 검색 기록 표시 */
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        searchDropDown.show()
-    }
-    
     /* 입력 중 이전 검색 기록 표시 */
     func textFieldDidChangeSelection(_ textField: UITextField) {
         searchDropDown.show()
+    }
+    
+    /* 입력 후 이전 검색 기록 숨기기 */
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        searchDropDown.hide()
     }
 }

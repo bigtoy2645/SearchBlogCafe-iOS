@@ -18,20 +18,19 @@ class DetailViewController: UIViewController {
     
     static let segueID = "DetailView"
     
-    var post: PostModel? {
-        didSet {
-            DispatchQueue.main.async {
-                self.loadData()
-            }
-        }
-    }
+    var post: PostModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadData()
+        
+        // UITextView 여백 제거
+        titleView.removeTextPadding()
+        contents.removeTextPadding()
     }
     
+    /* 데이터 불러오기 */
     func loadData() {
         guard let post = self.post else { return }
         
@@ -42,8 +41,9 @@ class DetailViewController: UIViewController {
             self.thumbnail.layer.cornerRadius = 8
         }
         date.text = DateUtil.formatDate(post.date, style: .long)
-        titleView.attributedText = post.title.appendHtmlFont(size: 17).htmlAttributedString()
-        contents.attributedText = post.contents.appendHtmlFont(size: 15).htmlAttributedString()
+        titleView.text = post.title.htmlEscaped()
+        contents.text = post.contents.htmlEscaped()
+        
         url.text = post.url
     }
     
@@ -53,6 +53,7 @@ class DetailViewController: UIViewController {
         performSegue(withIdentifier: PostViewController.segueID, sender: post)
     }
     
+    /* PostViewController 설정 */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == PostViewController.segueID,
             let post = sender as? PostModel,
