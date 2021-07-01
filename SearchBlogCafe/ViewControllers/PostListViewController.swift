@@ -202,6 +202,12 @@ extension PostListViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         searchDropDown.hide()
     }
+    
+    /* 엔터 입력 시 검색 */
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchButtonPressed(self)
+        return true
+    }
 }
 
 // MARK: - DetailDelegate
