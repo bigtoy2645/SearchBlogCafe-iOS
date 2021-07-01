@@ -8,6 +8,7 @@
 import UIKit
 
 class PostListTableViewCell: UITableViewCell {
+    
     static let nibName = "PostListTableViewCell"
     static let cellID = "PostCell"
     
@@ -16,6 +17,8 @@ class PostListTableViewCell: UITableViewCell {
     @IBOutlet weak var titleView: UITextView!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var thumbnail: UIImageView!
+    
+    var postVM = PostViewModel()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,11 +35,13 @@ class PostListTableViewCell: UITableViewCell {
     }
     
     func configure(_ post: Post) {
-        self.type.text = post.typeString
+        postVM.fetch(post: post)
+        
+        self.type.text = postVM.typeString()
         self.name.text = post.name
         self.titleView.text = post.title
-        self.date.text = DateUtil.formatDate(post.date, style: .short)
-        if let thumbnail = post.thumbnailData {
+        self.date.text = postVM.formatDate(style: .short)
+        if let thumbnail = postVM.thumbnailData() {
             self.thumbnail.image = UIImage(data: thumbnail)
         }
         

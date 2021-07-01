@@ -25,6 +25,7 @@
 		1A333EED268D7BD50045B971 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A333EEA268D7BD50045B971 /* Main.storyboard */; };
 		1A333EF0268D7CB20045B971 /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EEF268D7CB20045B971 /* PostListViewModel.swift */; };
 		1A333EF5268D94830045B971 /* KakaoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EF4268D94830045B971 /* KakaoService.swift */; };
+		1AB78C94268DFB3D008029F0 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB78C93268DFB3D008029F0 /* PostViewModel.swift */; };
 		1ACB7EA02689CD80009538EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7E9F2689CD80009538EA /* AppDelegate.swift */; };
 		1ACB7EB72689CD82009538EA /* SearchBlogCafeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7EB62689CD82009538EA /* SearchBlogCafeTests.swift */; };
 		1ACB7EC22689CD82009538EA /* SearchBlogCafeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7EC12689CD82009538EA /* SearchBlogCafeUITests.swift */; };
@@ -69,6 +70,7 @@
 		1A333EEB268D7BD50045B971 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1A333EEF268D7CB20045B971 /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostListViewModel.swift; path = ViewModels/PostListViewModel.swift; sourceTree = "<group>"; };
 		1A333EF4268D94830045B971 /* KakaoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KakaoService.swift; path = Services/KakaoService.swift; sourceTree = "<group>"; };
+		1AB78C93268DFB3D008029F0 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		1ACB7E9C2689CD80009538EA /* SearchBlogCafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchBlogCafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACB7E9F2689CD80009538EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1ACB7EAD2689CD82009538EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				1A333EEF268D7CB20045B971 /* PostListViewModel.swift */,
+				1AB78C93268DFB3D008029F0 /* PostViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AB78C94268DFB3D008029F0 /* PostViewModel.swift in Sources */,
 				1A333EDA268D7B390045B971 /* String+Html.swift in Sources */,
 				1A333ECA268D7A700045B971 /* Post.swift in Sources */,
 				1A333EC9268D7A700045B971 /* CafePosts.swift in Sources */,

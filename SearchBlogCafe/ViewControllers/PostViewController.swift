@@ -8,10 +8,9 @@
 import UIKit
 import WebKit
 
-class PostViewController: UIViewController, WKNavigationDelegate {
+class PostViewController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView!
-    @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     static let segueID = "PostView"
     var post: Post?
@@ -19,25 +18,10 @@ class PostViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let post = post, let link = URL(string: post.url) else {
-            // TODO - 오류 페이지
-            return
-        }
-        
-        webView.navigationDelegate = self
+        guard let post = post, let link = URL(string: post.url) else { return }
         
         self.title = post.title
         let request = URLRequest(url: link)
         webView.load(request)
-    }
-    
-    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        indicator.isHidden = false
-        indicator.startAnimating()
-    }
-    
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        indicator.stopAnimating()
-        indicator.isHidden = true
     }
 }

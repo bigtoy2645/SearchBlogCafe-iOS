@@ -228,6 +228,7 @@
                         <outlet property="contents" destination="4ef-gF-UPM" id="RJ8-kk-RSn"/>
                         <outlet property="date" destination="Vhy-mf-BiD" id="iL1-Mw-Nx9"/>
                         <outlet property="name" destination="IHC-eu-0dG" id="h8K-Lc-TY2"/>
+                        <outlet property="postVM" destination="tKp-cE-mlZ" id="SBN-1T-tsk"/>
                         <outlet property="thumbnail" destination="xIw-Eo-I0b" id="7dJ-Td-aUU"/>
                         <outlet property="titleView" destination="WLd-MI-AUi" id="9D6-zE-7tV"/>
                         <outlet property="url" destination="1SH-nz-1Bt" id="UyP-hO-i4d"/>
@@ -235,6 +236,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yau-jJ-XHu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <customObject id="tKp-cE-mlZ" customClass="PostViewModel" customModule="SearchBlogCafe" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1697.1014492753625" y="69.642857142857139"/>
         </scene>
@@ -246,9 +248,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="0Ff-w9-okx">
-                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
-                            </activityIndicatorView>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PCk-wH-8fh">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -263,15 +262,12 @@
                         <constraints>
                             <constraint firstItem="PCk-wH-8fh" firstAttribute="leading" secondItem="SOb-of-3rC" secondAttribute="leading" id="AbX-PU-Cue"/>
                             <constraint firstItem="PCk-wH-8fh" firstAttribute="top" secondItem="SOb-of-3rC" secondAttribute="top" id="FeJ-90-SDY"/>
-                            <constraint firstItem="0Ff-w9-okx" firstAttribute="centerX" secondItem="ONi-gJ-hpU" secondAttribute="centerX" id="Wf2-9P-4Dh"/>
                             <constraint firstAttribute="bottom" secondItem="PCk-wH-8fh" secondAttribute="bottom" id="fJr-Ca-tki"/>
-                            <constraint firstItem="0Ff-w9-okx" firstAttribute="centerY" secondItem="ONi-gJ-hpU" secondAttribute="centerY" id="pY8-hF-moz"/>
                             <constraint firstItem="SOb-of-3rC" firstAttribute="trailing" secondItem="PCk-wH-8fh" secondAttribute="trailing" id="zZv-qs-i07"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="M1k-W9-7Fy"/>
                     <connections>
-                        <outlet property="indicator" destination="0Ff-w9-okx" id="ePO-gp-PTR"/>
                         <outlet property="webView" destination="PCk-wH-8fh" id="G2v-GU-8KE"/>
                     </connections>
                 </viewController>

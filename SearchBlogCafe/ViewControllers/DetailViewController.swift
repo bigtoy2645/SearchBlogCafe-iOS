@@ -9,6 +9,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    @IBOutlet var postVM: PostViewModel!
+    
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var titleView: UITextView!
@@ -40,17 +42,18 @@ class DetailViewController: UIViewController {
     func loadData() {
         guard let post = self.post else { return }
         
-        self.title = post.typeString
+        postVM.fetch(post: post)
+        
+        self.title = postVM.typeString()
         name.text = post.name
-        if let thumbnail = post.thumbnailData {
+        date.text = postVM.formatDate(style: .long)
+        titleView.text = post.title
+        contents.text = post.contents
+        url.text = post.url
+        if let thumbnail = postVM.thumbnailData() {
             self.thumbnail.image = UIImage(data: thumbnail)
             self.thumbnail.layer.cornerRadius = 8
         }
-        date.text = DateUtil.formatDate(post.date, style: .long)
-        titleView.text = post.title
-        contents.text = post.contents
-        
-        url.text = post.url
     }
     
     /* URL로 이동 */

@@ -44,7 +44,7 @@ class PostListViewController: UIViewController {
         // 필터 버튼 설정
         filterButton.layer.cornerRadius = 8
         filterButton.layer.borderWidth = 0.5
-        filterButton.layer.borderColor = UIColor.systemTeal.cgColor
+        filterButton.layer.borderColor = UIColor.systemGray.cgColor
         
         // Dropdown 설정
         configureFilter()
@@ -107,6 +107,7 @@ class PostListViewController: UIViewController {
             else if index == 1  { viewModel.filter = Filter.blog }
             else if index == 2  { viewModel.filter = Filter.cafe }
             filterDropDown.clearSelection()
+            searchField.text = viewModel.searchKeyword
             searchButtonPressed(self)
         }
     }
@@ -189,8 +190,10 @@ extension PostListViewController: UITableViewDataSource, UITableViewDelegate {
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
         
         if distanceFromBottom <= height {
-            pagingSpinner.startAnimating()
-            getPosts(keyword: viewModel.searchKeyword)
+            if !viewModel.searchKeyword.isEmpty {
+                pagingSpinner.startAnimating()
+                getPosts(keyword: viewModel.searchKeyword)
+            }
         }
     }
 }
