@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
     static let storyboardID = "DetailView"
     
     var delegate: DetailDelegate?
-    var post: PostModel?
+    var post: Post?
     var indexPath: IndexPath?
     
     override func viewDidLoad() {
@@ -63,7 +63,7 @@ class DetailViewController: UIViewController {
     /* PostViewController 설정 */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == PostViewController.segueID,
-            let post = sender as? PostModel,
+            let post = sender as? Post,
             let postVC = segue.destination as? PostViewController {
             postVC.post = post
         }

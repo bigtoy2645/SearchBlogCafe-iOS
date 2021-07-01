@@ -7,11 +7,12 @@
 
 import Foundation
 
-struct BlogData: Codable {
+struct BlogPosts: Decodable {
     let documents: [Blog]
+    let meta: Meta
 }
 
-struct Blog: Codable {
+struct Blog: Decodable {
     let blogname: String
     let contents: String
     let datetime: String

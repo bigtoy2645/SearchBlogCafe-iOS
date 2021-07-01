@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search View Controller-->
+        <!--Post List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SearchViewController" customModule="SearchBlogCafe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="PostListViewController" customModule="SearchBlogCafe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -110,10 +110,12 @@
                         <outlet property="filterView" destination="aZS-iV-BhG" id="2Xe-tu-3zk"/>
                         <outlet property="searchField" destination="9CG-24-tXf" id="H7l-pr-fyC"/>
                         <outlet property="tableView" destination="Xl4-Ur-62e" id="o77-7C-JQN"/>
+                        <outlet property="viewModel" destination="F2W-aj-o7e" id="JWb-Vz-phm"/>
                         <segue destination="KY7-xD-JHa" kind="show" identifier="" id="GWP-Mc-pm4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <customObject id="F2W-aj-o7e" customClass="PostListViewModel" customModule="SearchBlogCafe" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="928.98550724637687" y="69.642857142857139"/>
         </scene>

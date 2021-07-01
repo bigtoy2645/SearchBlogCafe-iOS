@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct PostModel {
-    let type: FilterType
+struct Post {
+    let type: Filter
     let name: String
     let contents: String
     let date: Date
@@ -18,13 +18,14 @@ struct PostModel {
     
     var isRead = false
     var typeString: String {
-        if type == FilterType.blog {
+        if type.rawValue == Filter.blog.rawValue {
             return "Blog"
-        } else if type == FilterType.cafe {
+        } else if type.rawValue == Filter.cafe.rawValue {
             return "Cafe"
         }
         return ""
     }
+    
     var thumbnailData: Data? {
         var data: Data?
         if let url = URL(string: thumbnail) {

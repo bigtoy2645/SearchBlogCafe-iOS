@@ -7,9 +7,9 @@
 
 import UIKit
 
-class SearchListTableViewCell: UITableViewCell {
-    static let nibName = "SearchListTableViewCell"
-    static let cellID = "SearchCell"
+class PostListTableViewCell: UITableViewCell {
+    static let nibName = "PostListTableViewCell"
+    static let cellID = "PostCell"
     
     @IBOutlet weak var type: UILabel!  // Blog/Cafe
     @IBOutlet weak var name: UILabel!
@@ -29,5 +29,18 @@ class SearchListTableViewCell: UITableViewCell {
         // 타이틀 최대 2줄
         titleView.textContainer.maximumNumberOfLines = 2
         titleView.textContainer.lineBreakMode = .byTruncatingTail
+    }
+    
+    func configure(_ post: Post) {
+        self.type.text = post.typeString
+        self.name.text = post.name
+        self.titleView.text = post.title
+        self.date.text = DateUtil.formatDate(post.date, style: .short)
+        if let thumbnail = post.thumbnailData {
+            self.thumbnail.image = UIImage(data: thumbnail)
+        }
+        
+        // 읽음 처리
+        self.contentView.alpha = post.isRead ? 0.3 : 1.0
     }
 }

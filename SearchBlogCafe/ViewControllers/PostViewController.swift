@@ -14,7 +14,7 @@ class PostViewController: UIViewController, WKNavigationDelegate {
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     
     static let segueID = "PostView"
-    var post: PostModel?
+    var post: Post?
     
     override func viewDidLoad() {
         super.viewDidLoad()
