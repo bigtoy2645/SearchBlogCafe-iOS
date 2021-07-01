@@ -24,6 +24,7 @@ class PostListViewController: UIViewController {
     
     var filterDropDown = DropDown()
     var searchDropDown = DropDown()
+    let pagingSpinner = UIActivityIndicatorView(style: .gray)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +36,10 @@ class PostListViewController: UIViewController {
         tableView.estimatedRowHeight = 120
         tableView.setEmptyView(title: "검색 결과가 없습니다.")
         
-        // 필터 & 정렬 뷰 추가
+        // 필터, 정렬, 스피너 추가
         tableView.tableHeaderView = filterView
+        pagingSpinner.hidesWhenStopped = true
+        tableView.tableFooterView = pagingSpinner
         
         // 필터 버튼 설정
         filterButton.layer.cornerRadius = 8
@@ -130,6 +133,7 @@ class PostListViewController: UIViewController {
                 guard let blogPosts = blogPosts else { return }
                 self.viewModel.append(posts: blogPosts)
                 DispatchQueue.main.async {
+                    self.pagingSpinner.stopAnimating()
                     self.tableView.reloadData()
                 }
             }
@@ -140,6 +144,7 @@ class PostListViewController: UIViewController {
                 guard let cafePosts = cafePosts else { return }
                 self.viewModel.append(posts: cafePosts)
                 DispatchQueue.main.async {
+                    self.pagingSpinner.stopAnimating()
                     self.tableView.reloadData()
                 }
             }
@@ -184,6 +189,7 @@ extension PostListViewController: UITableViewDataSource, UITableViewDelegate {
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
         
         if distanceFromBottom <= height {
+            pagingSpinner.startAnimating()
             getPosts(keyword: viewModel.searchKeyword)
         }
     }
