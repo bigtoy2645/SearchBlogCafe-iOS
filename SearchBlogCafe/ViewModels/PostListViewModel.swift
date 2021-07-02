@@ -14,7 +14,6 @@ class PostListViewModel: NSObject {
     var filter: Filter = Filter.all
     var page: Int = 0
     var searchKeyword: String = ""
-    var hasNextPage: Bool = false
     
     func numberOfRows() -> Int {
         return posts.count

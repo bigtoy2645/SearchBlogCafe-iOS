@@ -26,8 +26,7 @@ class KakaoService {
         ]
         
         // Blog 검색
-        AF.request(blogURL, method: .get,
-                   parameters: parameters, headers: headers)
+        AF.request(blogURL, method: .get, parameters: parameters, headers: headers)
             .responseJSON(completionHandler: { response in
                 switch response.result {
                 case .success:
@@ -55,8 +54,7 @@ class KakaoService {
         ]
         
         // Cafe 검색
-        AF.request(cafeURL, method: .get,
-                   parameters: parameters, headers: headers)
+        AF.request(cafeURL, method: .get, parameters: parameters, headers: headers)
             .responseJSON(completionHandler: { response in
                 switch response.result {
                 case .success:

@@ -57,13 +57,18 @@ class PostListViewController: UIViewController {
     
     /* 검색 버튼 클릭 */
     @IBAction func searchButtonPressed(_ sender: Any) {
+        view.endEditing(true)
+        
         guard let searchText = searchField.text else { return }
         
         // 데이터 요청
         viewModel.updateSearch(keyword: searchText)
         getPosts(keyword: searchText)
         
-        if searchText.isEmpty { return }
+        if searchText.isEmpty {
+            self.tableView.reloadData()
+            return
+        }
         
         // 이전 검색 목록에 추가
         if let idx = searchDropDown.dataSource.firstIndex(of: searchText) {
@@ -224,6 +229,7 @@ extension PostListViewController: UITextFieldDelegate {
     /* 엔터 입력 시 검색 */
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchButtonPressed(self)
+        
         return true
     }
 }
