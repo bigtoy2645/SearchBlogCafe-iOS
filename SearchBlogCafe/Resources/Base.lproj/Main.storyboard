@@ -44,7 +44,7 @@
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xl4-Ur-62e">
                                 <rect key="frame" x="0.0" y="142" width="414" height="754"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="aZS-iV-BhG">
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="aZS-iV-BhG">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -86,6 +86,16 @@
                                         <constraint firstAttribute="trailing" secondItem="b4d-oi-uH1" secondAttribute="trailing" constant="10" id="ywA-6z-GNS"/>
                                     </constraints>
                                 </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="8gR-Sz-K6I">
+                                        <rect key="frame" x="0.0" y="64.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8gR-Sz-K6I" id="Y7C-xz-wYs">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="Lcw-5b-QEU"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="gKc-l9-fes"/>
