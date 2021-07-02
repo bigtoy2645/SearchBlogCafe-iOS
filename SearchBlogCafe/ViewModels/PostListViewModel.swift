@@ -20,11 +20,12 @@ class PostListViewModel: NSObject {
         return posts.count
     }
     
-    func post(at index: Int) -> Post {
+    func post(at index: Int) -> Post? {
+        if index >= posts.count { return nil }
         return posts[index]
     }
     
-    func configure(keyword: String) {
+    func updateSearch(keyword: String) {
         self.page = 0
         self.posts.removeAll()
         self.searchKeyword = keyword

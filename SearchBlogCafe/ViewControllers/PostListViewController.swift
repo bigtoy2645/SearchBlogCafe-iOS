@@ -60,7 +60,7 @@ class PostListViewController: UIViewController {
         guard let searchText = searchField.text else { return }
         
         // 데이터 요청
-        viewModel.configure(keyword: searchText)
+        viewModel.updateSearch(keyword: searchText)
         getPosts(keyword: searchText)
         
         if searchText.isEmpty { return }
@@ -175,8 +175,9 @@ extension PostListViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: PostListTableViewCell.cellID) as! PostListTableViewCell
         
         // Cell 설정
-        let post = viewModel.post(at: indexPath.row)
-        cell.configure(post)
+        if let post = viewModel.post(at: indexPath.row) {
+            cell.configure(post)
+        }
         
         return cell
     }

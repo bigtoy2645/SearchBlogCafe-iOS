@@ -17,7 +17,6 @@
 		1A333ED4268D7AEC0045B971 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333ED0268D7AEC0045B971 /* PostListViewController.swift */; };
 		1A333ED8268D7B390045B971 /* UITableView+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333ED5268D7B390045B971 /* UITableView+Empty.swift */; };
 		1A333ED9268D7B390045B971 /* UITextView+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333ED6268D7B390045B971 /* UITextView+Padding.swift */; };
-		1A333EDA268D7B390045B971 /* String+Html.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333ED7268D7B390045B971 /* String+Html.swift */; };
 		1A333EDC268D7B490045B971 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EDB268D7B490045B971 /* DateUtil.swift */; };
 		1A333EE4268D7BC70045B971 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A333EDD268D7BC70045B971 /* Assets.xcassets */; };
 		1A333EE5268D7BC70045B971 /* PostListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A333EDE268D7BC70045B971 /* PostListTableViewCell.xib */; };
@@ -26,8 +25,13 @@
 		1A333EF0268D7CB20045B971 /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EEF268D7CB20045B971 /* PostListViewModel.swift */; };
 		1A333EF5268D94830045B971 /* KakaoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EF4268D94830045B971 /* KakaoService.swift */; };
 		1AB78C94268DFB3D008029F0 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB78C93268DFB3D008029F0 /* PostViewModel.swift */; };
+		1AB78C9D268F1CE4008029F0 /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EEF268D7CB20045B971 /* PostListViewModel.swift */; };
+		1AB78C9F268F1CE7008029F0 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB78C93268DFB3D008029F0 /* PostViewModel.swift */; };
+		1AB78CA5268F1CF0008029F0 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC7268D7A700045B971 /* Post.swift */; };
+		1AB78CB4268F59C6008029F0 /* PostViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB78CB3268F59C6008029F0 /* PostViewModelTests.swift */; };
+		1AB78CB5268F6E35008029F0 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EDB268D7B490045B971 /* DateUtil.swift */; };
 		1ACB7EA02689CD80009538EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7E9F2689CD80009538EA /* AppDelegate.swift */; };
-		1ACB7EB72689CD82009538EA /* SearchBlogCafeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7EB62689CD82009538EA /* SearchBlogCafeTests.swift */; };
+		1ACB7EB72689CD82009538EA /* PostListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7EB62689CD82009538EA /* PostListViewModelTests.swift */; };
 		1ACB7EC22689CD82009538EA /* SearchBlogCafeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7EC12689CD82009538EA /* SearchBlogCafeUITests.swift */; };
 		3E59A0CFB0C01899067A3235 /* Pods_SearchBlogCafe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3731E09698001E5310B78EE /* Pods_SearchBlogCafe.framework */; };
 		4CBB15B4F1D944612A75D65C /* Pods_SearchBlogCafe_SearchBlogCafeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F82F76E5D49FD87C3E22542 /* Pods_SearchBlogCafe_SearchBlogCafeUITests.framework */; };
@@ -62,7 +66,6 @@
 		1A333ED0268D7AEC0045B971 /* PostListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostListViewController.swift; path = ViewControllers/PostListViewController.swift; sourceTree = "<group>"; };
 		1A333ED5268D7B390045B971 /* UITableView+Empty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+Empty.swift"; path = "Extentions/UITableView+Empty.swift"; sourceTree = "<group>"; };
 		1A333ED6268D7B390045B971 /* UITextView+Padding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITextView+Padding.swift"; path = "Extentions/UITextView+Padding.swift"; sourceTree = "<group>"; };
-		1A333ED7268D7B390045B971 /* String+Html.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Html.swift"; path = "Extentions/String+Html.swift"; sourceTree = "<group>"; };
 		1A333EDB268D7B490045B971 /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateUtil.swift; path = Utilities/DateUtil.swift; sourceTree = "<group>"; };
 		1A333EDD268D7BC70045B971 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
 		1A333EDE268D7BC70045B971 /* PostListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostListTableViewCell.xib; path = Resources/PostListTableViewCell.xib; sourceTree = "<group>"; };
@@ -71,11 +74,12 @@
 		1A333EEF268D7CB20045B971 /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostListViewModel.swift; path = ViewModels/PostListViewModel.swift; sourceTree = "<group>"; };
 		1A333EF4268D94830045B971 /* KakaoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KakaoService.swift; path = Services/KakaoService.swift; sourceTree = "<group>"; };
 		1AB78C93268DFB3D008029F0 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		1AB78CB3268F59C6008029F0 /* PostViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModelTests.swift; sourceTree = "<group>"; };
 		1ACB7E9C2689CD80009538EA /* All Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "All Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACB7E9F2689CD80009538EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1ACB7EAD2689CD82009538EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1ACB7EB22689CD82009538EA /* SearchBlogCafeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchBlogCafeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1ACB7EB62689CD82009538EA /* SearchBlogCafeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBlogCafeTests.swift; sourceTree = "<group>"; };
+		1ACB7EB62689CD82009538EA /* PostListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewModelTests.swift; sourceTree = "<group>"; };
 		1ACB7EB82689CD82009538EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1ACB7EBD2689CD82009538EA /* SearchBlogCafeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchBlogCafeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACB7EC12689CD82009538EA /* SearchBlogCafeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBlogCafeUITests.swift; sourceTree = "<group>"; };
@@ -143,7 +147,6 @@
 		1A333EC5268CBF780045B971 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				1A333ED7268D7B390045B971 /* String+Html.swift */,
 				1A333ED5268D7B390045B971 /* UITableView+Empty.swift */,
 				1A333ED6268D7B390045B971 /* UITextView+Padding.swift */,
 			);
@@ -219,7 +222,8 @@
 		1ACB7EB52689CD82009538EA /* SearchBlogCafeTests */ = {
 			isa = PBXGroup;
 			children = (
-				1ACB7EB62689CD82009538EA /* SearchBlogCafeTests.swift */,
+				1ACB7EB62689CD82009538EA /* PostListViewModelTests.swift */,
+				1AB78CB3268F59C6008029F0 /* PostViewModelTests.swift */,
 				1ACB7EB82689CD82009538EA /* Info.plist */,
 			);
 			path = SearchBlogCafeTests;
@@ -503,7 +507,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AB78C94268DFB3D008029F0 /* PostViewModel.swift in Sources */,
-				1A333EDA268D7B390045B971 /* String+Html.swift in Sources */,
 				1A333ECA268D7A700045B971 /* Post.swift in Sources */,
 				1A333EC9268D7A700045B971 /* CafePosts.swift in Sources */,
 				1A333ED9268D7B390045B971 /* UITextView+Padding.swift in Sources */,
@@ -524,7 +527,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ACB7EB72689CD82009538EA /* SearchBlogCafeTests.swift in Sources */,
+				1AB78CB4268F59C6008029F0 /* PostViewModelTests.swift in Sources */,
+				1AB78C9F268F1CE7008029F0 /* PostViewModel.swift in Sources */,
+				1ACB7EB72689CD82009538EA /* PostListViewModelTests.swift in Sources */,
+				1AB78CB5268F6E35008029F0 /* DateUtil.swift in Sources */,
+				1AB78C9D268F1CE4008029F0 /* PostListViewModel.swift in Sources */,
+				1AB78CA5268F1CF0008029F0 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,7 +754,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SearchBlogCafe.app/SearchBlogCafe";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/All Search.app/All Search";
 			};
 			name = Debug;
 		};
@@ -769,7 +777,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SearchBlogCafe.app/SearchBlogCafe";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/All Search.app/All Search";
 			};
 			name = Release;
 		};

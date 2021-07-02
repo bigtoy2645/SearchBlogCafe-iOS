@@ -19,8 +19,9 @@ class PostViewController: UIViewController {
         super.viewDidLoad()
         
         guard let post = post, let link = URL(string: post.url) else { return }
+        let postVM = PostViewModel(post)
         
-        self.title = post.title
+        self.title = postVM.titleString
         let request = URLRequest(url: link)
         webView.load(request)
     }

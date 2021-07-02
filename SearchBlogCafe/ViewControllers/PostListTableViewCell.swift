@@ -18,8 +18,6 @@ class PostListTableViewCell: UITableViewCell {
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var thumbnail: UIImageView!
     
-    var postVM = PostViewModel()
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -35,17 +33,17 @@ class PostListTableViewCell: UITableViewCell {
     }
     
     func configure(_ post: Post) {
-        postVM.fetch(post: post)
+        let postVM = PostViewModel(post)
         
-        self.type.text = postVM.typeString()
+        self.type.text = postVM.typeString
         self.name.text = post.name
-        self.titleView.text = post.title
+        self.titleView.text = postVM.titleString
         self.date.text = postVM.formatDate(style: .short)
         if let thumbnail = postVM.thumbnailData() {
             self.thumbnail.image = UIImage(data: thumbnail)
         }
         
         // 읽음 처리
-        self.contentView.alpha = post.isRead ? 0.3 : 1.0
+        self.contentView.alpha = CGFloat(postVM.alpha)
     }
 }

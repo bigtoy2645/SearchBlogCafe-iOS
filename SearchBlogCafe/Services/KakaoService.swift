@@ -79,10 +79,10 @@ class KakaoService {
         for data in blogData {
             let post = Post(type: Filter.blog,
                             name: data.blogname,
-                            contents: data.contents.htmlEscaped(),
-                            date: DateUtil.parseDate(data.datetime),
+                            contents: data.contents,
+                            date: data.datetime,
                             thumbnail: data.thumbnail,
-                            title: data.title.htmlEscaped(),
+                            title: data.title,
                             url: data.url)
             blogPosts.append(post)
         }
@@ -97,10 +97,10 @@ class KakaoService {
         for data in cafeData {
             let post = Post(type: Filter.cafe,
                             name: data.cafename,
-                            contents: data.contents.htmlEscaped(),
-                            date: DateUtil.parseDate(data.datetime),
+                            contents: data.contents,
+                            date: data.datetime,
                             thumbnail: data.thumbnail,
-                            title: data.title.htmlEscaped(),
+                            title: data.title,
                             url: data.url)
             cafePosts.append(post)
         }
