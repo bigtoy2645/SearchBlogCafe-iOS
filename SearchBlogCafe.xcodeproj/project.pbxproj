@@ -71,7 +71,7 @@
 		1A333EEF268D7CB20045B971 /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostListViewModel.swift; path = ViewModels/PostListViewModel.swift; sourceTree = "<group>"; };
 		1A333EF4268D94830045B971 /* KakaoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KakaoService.swift; path = Services/KakaoService.swift; sourceTree = "<group>"; };
 		1AB78C93268DFB3D008029F0 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
-		1ACB7E9C2689CD80009538EA /* SearchBlogCafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchBlogCafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1ACB7E9C2689CD80009538EA /* All Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "All Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACB7E9F2689CD80009538EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1ACB7EAD2689CD82009538EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1ACB7EB22689CD82009538EA /* SearchBlogCafeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SearchBlogCafeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,7 +193,7 @@
 		1ACB7E9D2689CD80009538EA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1ACB7E9C2689CD80009538EA /* SearchBlogCafe.app */,
+				1ACB7E9C2689CD80009538EA /* All Search.app */,
 				1ACB7EB22689CD82009538EA /* SearchBlogCafeTests.xctest */,
 				1ACB7EBD2689CD82009538EA /* SearchBlogCafeUITests.xctest */,
 			);
@@ -282,7 +282,7 @@
 			);
 			name = SearchBlogCafe;
 			productName = SearchBlogCafe;
-			productReference = 1ACB7E9C2689CD80009538EA /* SearchBlogCafe.app */;
+			productReference = 1ACB7E9C2689CD80009538EA /* All Search.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1ACB7EB12689CD82009538EA /* SearchBlogCafeTests */ = {
@@ -701,7 +701,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yurim.SearchBlogCafe;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "All Search";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -721,7 +721,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.yurim.SearchBlogCafe;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "All Search";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
