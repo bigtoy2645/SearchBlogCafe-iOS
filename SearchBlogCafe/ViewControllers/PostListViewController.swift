@@ -18,6 +18,7 @@ class PostListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var sortButton: UIButton!
     
     @IBOutlet var viewModel: PostListViewModel!
     let kakaoService = KakaoService()
@@ -49,6 +50,9 @@ class PostListViewController: UIViewController {
         // Dropdown 설정
         configureFilter()
         configureOldSearch()
+        
+        // 검색어 입력 Focusing
+        searchField.becomeFirstResponder()
     }
     
     /* 검색 버튼 클릭 */
@@ -82,11 +86,15 @@ class PostListViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "가나다순", style: .default,
                                       handler: { action in
                                         self.viewModel.sortPosts(Sort.title)
-                                        DispatchQueue.main.async { self.tableView.reloadData() }
+                                        DispatchQueue.main.async {
+                                            self.sortButton.setImage(UIImage(named: "sort-alphabet"), for: .normal)
+                                            self.tableView.reloadData()
+                                        }
                                       }))
         alert.addAction(UIAlertAction(title: "최신순", style: .default,
                                       handler: { action in
                                         self.viewModel.sortPosts(Sort.date)
+                                        self.sortButton.setImage(UIImage(named: "sort-time"), for: .normal)
                                         DispatchQueue.main.async { self.tableView.reloadData() }
                                       }))
         alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
