@@ -99,8 +99,10 @@ class PostListViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "최신순", style: .default,
                                       handler: { action in
                                         self.viewModel.sortPosts(Sort.date)
-                                        self.sortButton.setImage(UIImage(named: "sort-time"), for: .normal)
-                                        DispatchQueue.main.async { self.tableView.reloadData() }
+                                        DispatchQueue.main.async {
+                                            self.sortButton.setImage(UIImage(named: "sort-time"), for: .normal)
+                                            self.tableView.reloadData()
+                                        }
                                       }))
         alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
         

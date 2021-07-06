@@ -204,8 +204,9 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="3lo-n8-JpI" secondAttribute="trailing" constant="20" id="J56-zA-Lng"/>
                                             <constraint firstItem="xIw-Eo-I0b" firstAttribute="leading" secondItem="Nsl-ew-iWe" secondAttribute="leading" constant="100" id="MpD-kf-946"/>
-                                            <constraint firstItem="3lo-n8-JpI" firstAttribute="top" secondItem="xIw-Eo-I0b" secondAttribute="bottom" constant="50" id="XKi-hE-aBb"/>
+                                            <constraint firstItem="3lo-n8-JpI" firstAttribute="top" secondItem="Nsl-ew-iWe" secondAttribute="top" priority="250" constant="50" id="XUG-wo-WqO"/>
                                             <constraint firstItem="3lo-n8-JpI" firstAttribute="leading" secondItem="Nsl-ew-iWe" secondAttribute="leading" constant="20" id="ZhA-xu-RIW"/>
+                                            <constraint firstItem="xIw-Eo-I0b" firstAttribute="bottom" secondItem="3lo-n8-JpI" secondAttribute="top" constant="-50" id="b7Y-yy-eyx"/>
                                             <constraint firstAttribute="bottom" secondItem="3lo-n8-JpI" secondAttribute="bottom" id="pyJ-gT-1zd"/>
                                             <constraint firstItem="xIw-Eo-I0b" firstAttribute="top" secondItem="Nsl-ew-iWe" secondAttribute="top" constant="50" id="rCN-Lg-JIL"/>
                                             <constraint firstItem="xIw-Eo-I0b" firstAttribute="centerX" secondItem="Nsl-ew-iWe" secondAttribute="centerX" id="s81-WE-R7h"/>
@@ -237,6 +238,7 @@
                     <connections>
                         <outlet property="contents" destination="4ef-gF-UPM" id="RJ8-kk-RSn"/>
                         <outlet property="date" destination="Vhy-mf-BiD" id="iL1-Mw-Nx9"/>
+                        <outlet property="imageContentConstraint" destination="b7Y-yy-eyx" id="SO3-VX-AwP"/>
                         <outlet property="name" destination="IHC-eu-0dG" id="h8K-Lc-TY2"/>
                         <outlet property="thumbnail" destination="xIw-Eo-I0b" id="7dJ-Td-aUU"/>
                         <outlet property="titleView" destination="WLd-MI-AUi" id="9D6-zE-7tV"/>

@@ -41,6 +41,9 @@ class PostListTableViewCell: UITableViewCell {
         self.date.text = postVM.formatDate(style: .short)
         if let thumbnail = postVM.thumbnailData() {
             self.thumbnail.image = UIImage(data: thumbnail)
+            self.thumbnail.isHidden = false
+        } else {
+            self.thumbnail.isHidden = true
         }
         
         // 읽음 처리

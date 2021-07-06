@@ -15,6 +15,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var contents: UITextView!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var url: UILabel!
+    @IBOutlet weak var imageContentConstraint: NSLayoutConstraint!
     
     static let storyboardID = "DetailView"
     
@@ -51,6 +52,11 @@ class DetailViewController: UIViewController {
         if let thumbnail = postVM.thumbnailData() {
             self.thumbnail.image = UIImage(data: thumbnail)
             self.thumbnail.layer.cornerRadius = 8
+            self.thumbnail.isHidden = false
+            self.imageContentConstraint.isActive = true
+        } else {
+            self.thumbnail.isHidden = true
+            self.imageContentConstraint.isActive = false
         }
     }
     
