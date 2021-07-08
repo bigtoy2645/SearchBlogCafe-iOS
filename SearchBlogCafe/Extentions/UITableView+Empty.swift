@@ -23,6 +23,5 @@ extension UITableView {
         titleLabel.text = title
         
         self.backgroundView = emptyView
-        self.separatorStyle = .none
     }
 }

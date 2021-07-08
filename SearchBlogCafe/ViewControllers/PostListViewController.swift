@@ -75,9 +75,6 @@ class PostListViewController: UIViewController {
             searchDropDown.dataSource.remove(at: idx)
         }
         searchDropDown.dataSource.insert(searchText, at: 0)
-        
-        // 테이블 구분선 추가
-        tableView.separatorStyle = .singleLine
     }
     
     /* 필터 타입 변경 */
