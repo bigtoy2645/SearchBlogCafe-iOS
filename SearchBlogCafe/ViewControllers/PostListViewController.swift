@@ -21,7 +21,6 @@ class PostListViewController: UIViewController {
     @IBOutlet weak var sortButton: UIButton!
     
     @IBOutlet var viewModel: PostListViewModel!
-    let kakaoService = KakaoService()
     
     var filterDropDown = DropDown()
     var searchDropDown = DropDown()
@@ -63,7 +62,10 @@ class PostListViewController: UIViewController {
         
         // 데이터 요청
         viewModel.updateSearch(keyword: searchText)
-        getPosts(keyword: searchText)
+        viewModel.getPosts(keyword: searchText) {
+            self.pagingSpinner.stopAnimating()
+            self.tableView.reloadData()
+        }
         
         if searchText.isEmpty {
             self.tableView.reloadData()
@@ -137,32 +139,6 @@ class PostListViewController: UIViewController {
             searchButtonPressed(self)
         }
     }
-    
-    /* Blog & Cafe 포스트 요청 */
-    private func getPosts(keyword: String) {
-        let nextPage = viewModel.nextPage()
-        if (viewModel.filter.rawValue & Filter.blog.rawValue) != 0 {
-            kakaoService.searchBlogPosts(for: keyword, page: nextPage) { blogPosts in
-                guard let blogPosts = blogPosts else { return }
-                self.viewModel.append(posts: blogPosts)
-                DispatchQueue.main.async {
-                    self.pagingSpinner.stopAnimating()
-                    self.tableView.reloadData()
-                }
-            }
-        }
-        
-        if (viewModel.filter.rawValue & Filter.cafe.rawValue) != 0 {
-            kakaoService.searchCafePosts(for: keyword, page: nextPage) { cafePosts in
-                guard let cafePosts = cafePosts else { return }
-                self.viewModel.append(posts: cafePosts)
-                DispatchQueue.main.async {
-                    self.pagingSpinner.stopAnimating()
-                    self.tableView.reloadData()
-                }
-            }
-        }
-    }
 }
 
 // MARK: - UITableViewDataSource, UITableViewDelegate
@@ -205,7 +181,10 @@ extension PostListViewController: UITableViewDataSource, UITableViewDelegate {
         if distanceFromBottom <= height {
             if !viewModel.searchKeyword.isEmpty {
                 pagingSpinner.startAnimating()
-                getPosts(keyword: viewModel.searchKeyword)
+                viewModel.getPosts(keyword: viewModel.searchKeyword) {
+                    self.pagingSpinner.stopAnimating()
+                    self.tableView.reloadData()
+                }
             }
         }
     }

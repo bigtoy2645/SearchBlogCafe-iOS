@@ -9,6 +9,7 @@ import Foundation
 
 class PostListViewModel: NSObject {
     private var posts: [Post] = []
+    private let kakaoService = KakaoService()
     
     var sort: Sort = Sort.title
     var filter: Filter = Filter.all
@@ -58,6 +59,26 @@ class PostListViewModel: NSObject {
     
     func setDim(at index: Int) {
         self.posts[index].isRead = true
+    }
+    
+    /* Blog & Cafe 포스트 요청 */
+    func getPosts(keyword: String, completion: @escaping () -> ()) {
+        let nextPage = nextPage()
+        if (filter.rawValue & Filter.blog.rawValue) != 0 {
+            kakaoService.searchBlogPosts(for: keyword, page: nextPage) { blogPosts in
+                guard let blogPosts = blogPosts else { return }
+                self.append(posts: blogPosts)
+                completion()
+            }
+        }
+        
+        if (filter.rawValue & Filter.cafe.rawValue) != 0 {
+            kakaoService.searchCafePosts(for: keyword, page: nextPage) { cafePosts in
+                guard let cafePosts = cafePosts else { return }
+                self.append(posts: cafePosts)
+                completion()
+            }
+        }
     }
 }
 
