@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class PostListTableViewCell: UITableViewCell {
     
@@ -17,6 +19,9 @@ class PostListTableViewCell: UITableViewCell {
     @IBOutlet weak var titleView: UITextView!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var thumbnail: UIImageView!
+    
+    var viewModel = PostViewModel(Post.empty)
+    var disposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,21 +37,60 @@ class PostListTableViewCell: UITableViewCell {
         titleView.textContainer.lineBreakMode = .byTruncatingTail
     }
     
-    func configure(_ post: Post) {
-        let postVM = PostViewModel(post)
+    func bind(post: Post) {
+        viewModel = PostViewModel(post)
         
-        self.type.text = postVM.typeString
-        self.name.text = post.name
-        self.titleView.text = postVM.titleString
-        self.date.text = postVM.formatDate(style: .short)
-        if let thumbnail = postVM.thumbnailData() {
-            self.thumbnail.image = UIImage(data: thumbnail)
-            self.thumbnail.isHidden = false
-        } else {
-            self.thumbnail.isHidden = true
-        }
+        // UI Binding
+        setupBindings()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
         
-        // 읽음 처리
-        self.contentView.alpha = CGFloat(postVM.alpha)
+        disposeBag = DisposeBag()
+    }
+    
+    // MARK: - UI Binding
+    
+    func setupBindings() {
+        viewModel.typeString
+            .observe(on: MainScheduler.instance)
+            .bind(to: type.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.post
+            .map { $0.title }
+            .observe(on: MainScheduler.instance)
+            .bind(to: titleView.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.formatDate(style: .short)
+            .observe(on: MainScheduler.instance)
+            .bind(to: date.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.thumbnailData
+            .map { data -> UIImage? in
+                guard let data = data else {
+                    self.thumbnail.isHidden = true
+                    return nil
+                }
+                self.thumbnail.isHidden = false
+                return UIImage(data: data)
+            }
+            .observe(on: MainScheduler.instance)
+            .bind(to: thumbnail.rx.image)
+            .disposed(by: disposeBag)
+        
+        viewModel.post
+            .map { $0.name }
+            .observe(on: MainScheduler.instance)
+            .bind(to: name.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.alpha
+            .map { CGFloat($0) }
+            .bind(to: contentView.rx.alpha)
+            .disposed(by: disposeBag)
     }
 }

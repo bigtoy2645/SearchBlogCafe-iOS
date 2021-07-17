@@ -6,79 +6,110 @@
 //
 
 import Foundation
+import RxSwift
 
 class PostListViewModel: NSObject {
-    private var posts: [Post] = []
-    private let kakaoService = KakaoService()
+    var posts = BehaviorSubject<[Post]>(value: [])
+    var disposeBag = DisposeBag()
     
-    var sort: Sort = Sort.title
+    var sort: Sort = Sort.title {
+        didSet {
+            posts.map {
+                var sortedPosts: [Post] = []
+                if self.sort.rawValue == Sort.title.rawValue {
+                    sortedPosts = $0.sorted { $0.title < $1.title }
+                } else if self.sort.rawValue == Sort.date.rawValue {
+                    sortedPosts = $0.sorted { $0.date > $1.date }
+                }
+                return sortedPosts
+            }
+            .take(1)
+            .subscribe(onNext: posts.onNext)
+            .disposed(by: disposeBag)
+        }
+    }
     var filter: Filter = Filter.all
     var page: Int = 0
     var searchKeyword: String = ""
     
-    func numberOfRows() -> Int {
-        return posts.count
-    }
-    
-    func post(at index: Int) -> Post? {
-        if index >= posts.count { return nil }
-        return posts[index]
-    }
-    
     func updateSearch(keyword: String) {
         self.page = 0
-        self.posts.removeAll()
         self.searchKeyword = keyword
-    }
-    
-    func append(posts: [Post]) {
-        self.posts.append(contentsOf: posts)
-        sortPosts(sort)
-    }
-    
-    func nextPage() -> Int {
-        page += 1
-        return page
-    }
-    
-    func sortedPosts(_ unsorted: [Post]) -> [Post] {
-        var sorted = unsorted
-        
-        if sort.rawValue == Sort.title.rawValue {
-            sorted.sort { $0.title < $1.title }
-        } else if sort.rawValue == Sort.date.rawValue {
-            sorted.sort { $0.date > $1.date }
-        }
-        return sorted
-    }
-    
-    func sortPosts(_ sort: Sort) {
-        self.sort = sort
-        self.posts = sortedPosts(posts)
+        _ = BehaviorSubject.just([])
+            .take(1)
+            .subscribe(onNext: posts.onNext)
     }
     
     func setDim(at index: Int) {
-        self.posts[index].isRead = true
+        _ = posts.map { allPost in
+            var newPosts = [Post]()
+            allPost.enumerated().forEach { i, post in
+                if i == index {
+                    newPosts.append(Post.setRead(post))
+                } else {
+                    newPosts.append(post)
+                }
+            }
+            return newPosts
+        }
+        .take(1)
+        .subscribe(onNext: posts.onNext)
+    }
+}
+
+// MARK: - Blog & Cafe 포스트 요청
+
+extension PostListViewModel {
+    
+    func getPosts() {
+        page += 1
+        
+        if (filter.rawValue & Filter.blog.rawValue) != 0 { searchBlogPosts() }
+        if (filter.rawValue & Filter.cafe.rawValue) != 0 { searchCafePosts() }
     }
     
-    /* Blog & Cafe 포스트 요청 */
-    func getPosts(keyword: String, completion: @escaping () -> ()) {
-        let nextPage = nextPage()
-        if (filter.rawValue & Filter.blog.rawValue) != 0 {
-            kakaoService.searchBlogPosts(for: keyword, page: nextPage) { blogPosts in
-                guard let blogPosts = blogPosts else { return }
-                self.append(posts: blogPosts)
-                completion()
+    func searchBlogPosts() {
+        KakaoService.searchPostsRx(from: KakaoService.blogURL, for: searchKeyword, page: page)
+            .map { data -> [Blog] in
+                guard let response = try? JSONDecoder().decode(BlogPosts.self, from: data) else {
+                    throw NSError(domain: "Decoding error", code: -1, userInfo: nil)
+                }
+                return response.documents
             }
-        }
-        
-        if (filter.rawValue & Filter.cafe.rawValue) != 0 {
-            kakaoService.searchCafePosts(for: keyword, page: nextPage) { cafePosts in
-                guard let cafePosts = cafePosts else { return }
-                self.append(posts: cafePosts)
-                completion()
+            .map { blogData in
+                var blogPosts: [Post] = []
+                for data in blogData {
+                    let post = Post.fromBlog(data)
+                    blogPosts.append(post)
+                }
+                return blogPosts
             }
-        }
+            .subscribe(onNext: {
+                try! self.posts.onNext($0 + self.posts.value())
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func searchCafePosts() {
+        KakaoService.searchPostsRx(from: KakaoService.cafeURL, for: searchKeyword, page: page)
+            .map { data -> [Cafe] in
+                guard let response = try? JSONDecoder().decode(CafePosts.self, from: data) else {
+                    throw NSError(domain: "Decoding error", code: -1, userInfo: nil)
+                }
+                return response.documents
+            }
+            .map { cafeData in
+                var cafePosts: [Post] = []
+                for data in cafeData {
+                    let post = Post.fromCafe(data)
+                    cafePosts.append(post)
+                }
+                return cafePosts
+            }
+            .subscribe(onNext: {
+                try! self.posts.onNext($0 + self.posts.value())
+            })
+            .disposed(by: disposeBag)
     }
 }
 

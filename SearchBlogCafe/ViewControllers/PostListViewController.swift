@@ -7,6 +7,8 @@
 
 import UIKit
 import DropDown
+import RxSwift
+import RxCocoa
 
 protocol DetailDelegate {
     func didOpenURL(indexPath: IndexPath?)
@@ -21,6 +23,7 @@ class PostListViewController: UIViewController {
     @IBOutlet weak var sortButton: UIButton!
     
     @IBOutlet var viewModel: PostListViewModel!
+    var disposeBag = DisposeBag()
     
     var filterDropDown = DropDown()
     var searchDropDown = DropDown()
@@ -52,6 +55,9 @@ class PostListViewController: UIViewController {
         
         // 검색어 입력 Focusing
         searchField.becomeFirstResponder()
+        
+        // UI Binding
+        setupBindings()
     }
     
     /* 검색 버튼 클릭 */
@@ -62,10 +68,7 @@ class PostListViewController: UIViewController {
         
         // 데이터 요청
         viewModel.updateSearch(keyword: searchText)
-        viewModel.getPosts(keyword: searchText) {
-            self.pagingSpinner.stopAnimating()
-            self.tableView.reloadData()
-        }
+        viewModel.getPosts()
         
         if searchText.isEmpty {
             self.tableView.reloadData()
@@ -88,21 +91,9 @@ class PostListViewController: UIViewController {
     @IBAction func sortButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "가나다순", style: .default,
-                                      handler: { action in
-                                        self.viewModel.sortPosts(Sort.title)
-                                        DispatchQueue.main.async {
-                                            self.sortButton.setImage(UIImage(named: "sort-alphabet"), for: .normal)
-                                            self.tableView.reloadData()
-                                        }
-                                      }))
+                                      handler: { action in self.viewModel.sort = Sort.title }))
         alert.addAction(UIAlertAction(title: "최신순", style: .default,
-                                      handler: { action in
-                                        self.viewModel.sortPosts(Sort.date)
-                                        DispatchQueue.main.async {
-                                            self.sortButton.setImage(UIImage(named: "sort-time"), for: .normal)
-                                            self.tableView.reloadData()
-                                        }
-                                      }))
+                                      handler: { action in self.viewModel.sort = Sort.date }))
         alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
@@ -139,35 +130,48 @@ class PostListViewController: UIViewController {
             searchButtonPressed(self)
         }
     }
+    
+    // MARK: - UI Binding
+    
+    func setupBindings() {
+        // Menu Cell
+        viewModel.posts
+            .observe(on: MainScheduler.instance)
+            .bind(to: tableView.rx.items(cellIdentifier: PostListTableViewCell.cellID,
+                                         cellType: PostListTableViewCell.self)) { index, item, cell in
+                cell.bind(post: item)
+            }
+            .disposed(by: disposeBag)
+        
+        // 검색 완료 시
+        viewModel.posts
+            .subscribe(onCompleted: {
+                self.pagingSpinner.stopAnimating()
+                self.tableView.reloadData()
+                if self.viewModel.sort.rawValue == Sort.title.rawValue {
+                    self.sortButton.setImage(UIImage(named: "sort-alphabet"), for: .normal)
+                } else if self.viewModel.sort.rawValue == Sort.date.rawValue {
+                    self.sortButton.setImage(UIImage(named: "sort-time"), for: .normal)
+                }
+            })
+            .disposed(by: disposeBag)
+    }
 }
 
-// MARK: - UITableViewDataSource, UITableViewDelegate
+// MARK: - UITableViewDelegate
 
-extension PostListViewController: UITableViewDataSource, UITableViewDelegate {
-    
-    /* Cell 개수 */
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows()
-    }
-    
-    /* Cell 그리기 */
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: PostListTableViewCell.cellID) as! PostListTableViewCell
-        
-        // Cell 설정
-        if let post = viewModel.post(at: indexPath.row) {
-            cell.configure(post)
-        }
-        
-        return cell
-    }
+extension PostListViewController: UITableViewDelegate {
     
     /* 검색 목록 클릭 시 디테일 화면으로 이동 */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let detailVC = self.storyboard?.instantiateViewController(withIdentifier: DetailViewController.storyboardID) as? DetailViewController else { return }
         detailVC.indexPath = indexPath
         detailVC.delegate = self
-        detailVC.post = viewModel.post(at: indexPath.row)
+        do {
+            try detailVC.viewModel = PostViewModel(viewModel.posts.value()[indexPath.row])
+        } catch {
+            print("no post data. \(error.localizedDescription)")
+        }
         
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
@@ -181,10 +185,7 @@ extension PostListViewController: UITableViewDataSource, UITableViewDelegate {
         if distanceFromBottom <= height {
             if !viewModel.searchKeyword.isEmpty {
                 pagingSpinner.startAnimating()
-                viewModel.getPosts(keyword: viewModel.searchKeyword) {
-                    self.pagingSpinner.stopAnimating()
-                    self.tableView.reloadData()
-                }
+                viewModel.getPosts()
             }
         }
     }

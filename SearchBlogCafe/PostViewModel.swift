@@ -6,38 +6,31 @@
 //
 
 import Foundation
+import RxSwift
 
 class PostViewModel: NSObject {
-    private var post: Post
+    
+    var post = BehaviorSubject<Post>(value: Post.empty)
     
     init(_ post: Post) {
-        self.post = post
+        BehaviorSubject<Post>.just(post)
+            .take(1)
+            .subscribe(onNext: self.post.onNext)
     }
     
-    var typeString: String {
-        if post.type.rawValue == Filter.blog.rawValue {
+    lazy var typeString: Observable<String> = self.post.map {
+        if $0.type.rawValue == Filter.blog.rawValue {
             return "Blog"
-        } else if post.type.rawValue == Filter.cafe.rawValue {
+        } else if $0.type.rawValue == Filter.cafe.rawValue {
             return "Cafe"
         }
         return ""
     }
     
-    var alpha: Double {
-        return post.isRead ? 0.3 : 1.0
-    }
-    
-    var titleString: String {
-        return htmlEscaped(post.title)
-    }
-    
-    var contentString: String {
-        return htmlEscaped(post.contents)
-    }
-    
-    func thumbnailData() -> Data? {
+    lazy var alpha: Observable<Double> = post.map { $0.isRead ? 0.3 : 1.0 }
+    lazy var thumbnailData: Observable<Data?> = post.map {
         var data: Data?
-        if let url = URL(string: post.thumbnail) {
+        if let url = URL(string: $0.thumbnail) {
             do {
                 data = try Data(contentsOf: url)
             } catch {
@@ -47,25 +40,10 @@ class PostViewModel: NSObject {
         return data
     }
     
-    func formatDate(style: DateUtil.FormatStyle) -> String {
-        let date = DateUtil.parseDate(post.date)
-        return DateUtil.formatDate(date, style: style)
-    }
-    
-    /* HTML 태그 제거 */
-    private func htmlEscaped(_ htmlString: String) -> String {
-        guard let encodedData = htmlString.data(using: .utf16) else { return htmlString }
-        
-        let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
-            .documentType: NSAttributedString.DocumentType.html,
-            .characterEncoding: String.Encoding.utf16.rawValue
-        ]
-        
-        do {
-            let attributedString = try NSAttributedString(data: encodedData, options: options, documentAttributes: nil)
-            return attributedString.string
-        } catch {
-            return htmlString
+    func formatDate(style: DateUtil.FormatStyle) -> Observable<String> {
+        post.map {
+            let date = DateUtil.parseDate($0.date)
+            return DateUtil.formatDate(date, style: style)
         }
     }
 }
