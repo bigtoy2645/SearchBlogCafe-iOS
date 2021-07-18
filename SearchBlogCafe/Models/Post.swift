@@ -19,15 +19,15 @@ struct Post {
 }
 
 extension Post: Equatable {
-    static let empty = Post(type: Filter.blog, name: "", contents: "", date: "", thumbnail: "", title: "", url: "")
+    static let empty = Post(type: .blog, name: "", contents: "", date: "", thumbnail: "", title: "", url: "")
     
     static func fromBlog(_ data: Blog) -> Post {
-        return Post(type: Filter.blog, name: data.blogname, contents: htmlEscaped(data.contents),
+        return Post(type: .blog, name: data.blogname, contents: htmlEscaped(data.contents),
                     date: data.datetime, thumbnail: data.thumbnail, title: htmlEscaped(data.title), url: data.url)
     }
     
     static func fromCafe(_ data: Cafe) -> Post {
-        return Post(type: Filter.cafe, name: data.cafename, contents: htmlEscaped(data.contents),
+        return Post(type: .cafe, name: data.cafename, contents: htmlEscaped(data.contents),
                     date: data.datetime, thumbnail: data.thumbnail, title: htmlEscaped(data.title), url: data.url)
     }
     
@@ -38,7 +38,7 @@ extension Post: Equatable {
     }
     
     static func == (lhs: Post, rhs: Post) -> Bool {
-        return (lhs.type.rawValue == rhs.type.rawValue &&
+        return (lhs.type == rhs.type &&
                     lhs.name == rhs.name &&
                     lhs.contents == rhs.contents &&
                     lhs.date == rhs.date &&

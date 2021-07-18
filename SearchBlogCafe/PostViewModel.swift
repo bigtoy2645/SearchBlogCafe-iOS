@@ -19,11 +19,8 @@ class PostViewModel: NSObject {
     }
     
     lazy var typeString: Observable<String> = self.post.map {
-        if $0.type.rawValue == Filter.blog.rawValue {
-            return "Blog"
-        } else if $0.type.rawValue == Filter.cafe.rawValue {
-            return "Cafe"
-        }
+        if $0.type == .blog { return "Blog" }
+        if $0.type == .cafe { return "Cafe" }
         return ""
     }
     

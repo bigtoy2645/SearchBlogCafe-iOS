@@ -67,13 +67,10 @@ class PostListViewController: UIViewController {
         guard let searchText = searchField.text else { return }
         
         // 데이터 요청
-        viewModel.updateSearch(keyword: searchText)
-        viewModel.getPosts()
+        viewModel.searchKeyword = searchText
+        if searchText.isEmpty { return }
         
-        if searchText.isEmpty {
-            self.tableView.reloadData()
-            return
-        }
+        
         
         // 이전 검색 목록에 추가
         if let idx = searchDropDown.dataSource.firstIndex(of: searchText) {
@@ -91,9 +88,9 @@ class PostListViewController: UIViewController {
     @IBAction func sortButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "가나다순", style: .default,
-                                      handler: { action in self.viewModel.sort = Sort.title }))
+                                      handler: { action in self.viewModel.sort = .title }))
         alert.addAction(UIAlertAction(title: "최신순", style: .default,
-                                      handler: { action in self.viewModel.sort = Sort.date }))
+                                      handler: { action in self.viewModel.sort = .date }))
         alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
@@ -108,9 +105,9 @@ class PostListViewController: UIViewController {
         filterDropDown.backgroundColor = .white
         filterDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             filterButton.setTitle(item, for: .normal)
-            if index == 0       { viewModel.filter = Filter.all }
-            else if index == 1  { viewModel.filter = Filter.blog }
-            else if index == 2  { viewModel.filter = Filter.cafe }
+            if index == 0       { viewModel.filter = .all }
+            else if index == 1  { viewModel.filter = .blog }
+            else if index == 2  { viewModel.filter = .cafe }
             filterDropDown.clearSelection()
             searchField.text = viewModel.searchKeyword
             searchButtonPressed(self)
@@ -145,14 +142,15 @@ class PostListViewController: UIViewController {
         
         // 검색 완료 시
         viewModel.posts
-            .subscribe(onCompleted: {
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { _ in
                 self.pagingSpinner.stopAnimating()
-                self.tableView.reloadData()
-                if self.viewModel.sort.rawValue == Sort.title.rawValue {
+                if self.viewModel.sort == .title {
                     self.sortButton.setImage(UIImage(named: "sort-alphabet"), for: .normal)
-                } else if self.viewModel.sort.rawValue == Sort.date.rawValue {
+                } else if self.viewModel.sort == .date {
                     self.sortButton.setImage(UIImage(named: "sort-time"), for: .normal)
                 }
+                self.tableView.reloadData()
             })
             .disposed(by: disposeBag)
     }
