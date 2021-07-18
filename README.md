@@ -4,6 +4,7 @@
 
 ## Features
 - Kakao REST API 사용
+- [RxSwift](https://github.com/ReactiveX/RxSwift) 사용
 - [Alamofire](https://github.com/Alamofire/Alamofire) 사용
 - [DropDown](https://github.com/AssistoLab/DropDown) 사용
 - Storyboard & XIB 사용
