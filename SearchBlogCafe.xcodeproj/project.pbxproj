@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F864DE583FB666F8FE33C60 /* Pods_SearchBlogCafeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D0B824A966523004DC036FA /* Pods_SearchBlogCafeTests.framework */; };
+		1A313B4B26A573D600927EC3 /* KakaoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EF4268D94830045B971 /* KakaoService.swift */; };
+		1A313B4C26A5918100927EC3 /* BlogPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC8268D7A700045B971 /* BlogPosts.swift */; };
+		1A313B4D26A5918400927EC3 /* CafePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC6268D7A700045B971 /* CafePosts.swift */; };
 		1A333EC9268D7A700045B971 /* CafePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC6268D7A700045B971 /* CafePosts.swift */; };
 		1A333ECA268D7A700045B971 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC7268D7A700045B971 /* Post.swift */; };
 		1A333ECB268D7A700045B971 /* BlogPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC8268D7A700045B971 /* BlogPosts.swift */; };
@@ -34,6 +36,7 @@
 		1ACB7EC22689CD82009538EA /* SearchBlogCafeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACB7EC12689CD82009538EA /* SearchBlogCafeUITests.swift */; };
 		3E59A0CFB0C01899067A3235 /* Pods_SearchBlogCafe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3731E09698001E5310B78EE /* Pods_SearchBlogCafe.framework */; };
 		4CBB15B4F1D944612A75D65C /* Pods_SearchBlogCafe_SearchBlogCafeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F82F76E5D49FD87C3E22542 /* Pods_SearchBlogCafe_SearchBlogCafeUITests.framework */; };
+		DCB57F18B4F018ABF4CD80DA /* Pods_SearchBlogCafe_SearchBlogCafeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D83873BF8850E9950E583FD3 /* Pods_SearchBlogCafe_SearchBlogCafeTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,11 +86,13 @@
 		1ACB7EC12689CD82009538EA /* SearchBlogCafeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBlogCafeUITests.swift; sourceTree = "<group>"; };
 		1ACB7EC32689CD82009538EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30B40E2C94233BE1694E6E29 /* Pods-SearchBlogCafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBlogCafe.release.xcconfig"; path = "Target Support Files/Pods-SearchBlogCafe/Pods-SearchBlogCafe.release.xcconfig"; sourceTree = "<group>"; };
-		3D0B824A966523004DC036FA /* Pods_SearchBlogCafeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchBlogCafeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6592B67987D61C94A974D037 /* Pods-SearchBlogCafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBlogCafe.debug.xcconfig"; path = "Target Support Files/Pods-SearchBlogCafe/Pods-SearchBlogCafe.debug.xcconfig"; sourceTree = "<group>"; };
 		6F82F76E5D49FD87C3E22542 /* Pods_SearchBlogCafe_SearchBlogCafeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchBlogCafe_SearchBlogCafeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F87204E7968621376D250EE /* Pods-SearchBlogCafe-SearchBlogCafeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBlogCafe-SearchBlogCafeTests.release.xcconfig"; path = "Target Support Files/Pods-SearchBlogCafe-SearchBlogCafeTests/Pods-SearchBlogCafe-SearchBlogCafeTests.release.xcconfig"; sourceTree = "<group>"; };
+		97B4B7D65D6189FDD35F128A /* Pods-SearchBlogCafe-SearchBlogCafeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBlogCafe-SearchBlogCafeTests.debug.xcconfig"; path = "Target Support Files/Pods-SearchBlogCafe-SearchBlogCafeTests/Pods-SearchBlogCafe-SearchBlogCafeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9F1072C06502EBCD6E6839D4 /* Pods-SearchBlogCafeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBlogCafeTests.release.xcconfig"; path = "Target Support Files/Pods-SearchBlogCafeTests/Pods-SearchBlogCafeTests.release.xcconfig"; sourceTree = "<group>"; };
 		BCD9ED324E9ABB9061BA85CB /* Pods-SearchBlogCafe-SearchBlogCafeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBlogCafe-SearchBlogCafeUITests.release.xcconfig"; path = "Target Support Files/Pods-SearchBlogCafe-SearchBlogCafeUITests/Pods-SearchBlogCafe-SearchBlogCafeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D83873BF8850E9950E583FD3 /* Pods_SearchBlogCafe_SearchBlogCafeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchBlogCafe_SearchBlogCafeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3731E09698001E5310B78EE /* Pods_SearchBlogCafe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchBlogCafe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -104,7 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F864DE583FB666F8FE33C60 /* Pods_SearchBlogCafeTests.framework in Frameworks */,
+				DCB57F18B4F018ABF4CD80DA /* Pods_SearchBlogCafe_SearchBlogCafeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +133,8 @@
 				BCD9ED324E9ABB9061BA85CB /* Pods-SearchBlogCafe-SearchBlogCafeUITests.release.xcconfig */,
 				13FC1671A42E3966AA2EACC6 /* Pods-SearchBlogCafeTests.debug.xcconfig */,
 				9F1072C06502EBCD6E6839D4 /* Pods-SearchBlogCafeTests.release.xcconfig */,
+				97B4B7D65D6189FDD35F128A /* Pods-SearchBlogCafe-SearchBlogCafeTests.debug.xcconfig */,
+				7F87204E7968621376D250EE /* Pods-SearchBlogCafe-SearchBlogCafeTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -137,7 +144,7 @@
 			children = (
 				E3731E09698001E5310B78EE /* Pods_SearchBlogCafe.framework */,
 				6F82F76E5D49FD87C3E22542 /* Pods_SearchBlogCafe_SearchBlogCafeUITests.framework */,
-				3D0B824A966523004DC036FA /* Pods_SearchBlogCafeTests.framework */,
+				D83873BF8850E9950E583FD3 /* Pods_SearchBlogCafe_SearchBlogCafeTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -294,6 +301,7 @@
 				1ACB7EAE2689CD82009538EA /* Sources */,
 				1ACB7EAF2689CD82009538EA /* Frameworks */,
 				1ACB7EB02689CD82009538EA /* Resources */,
+				8D350A39CD67032066916B9C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -450,7 +458,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SearchBlogCafeTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-SearchBlogCafe-SearchBlogCafeTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -472,6 +480,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SearchBlogCafe-SearchBlogCafeUITests/Pods-SearchBlogCafe-SearchBlogCafeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D350A39CD67032066916B9C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SearchBlogCafe-SearchBlogCafeTests/Pods-SearchBlogCafe-SearchBlogCafeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SearchBlogCafe-SearchBlogCafeTests/Pods-SearchBlogCafe-SearchBlogCafeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SearchBlogCafe-SearchBlogCafeTests/Pods-SearchBlogCafe-SearchBlogCafeTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CFAA4486B7C4D21CECCA35B3 /* [CP] Check Pods Manifest.lock */ = {
@@ -525,10 +550,13 @@
 			files = (
 				1AB78CB4268F59C6008029F0 /* PostViewModelTests.swift in Sources */,
 				1AB78C9F268F1CE7008029F0 /* PostViewModel.swift in Sources */,
+				1A313B4B26A573D600927EC3 /* KakaoService.swift in Sources */,
+				1A313B4D26A5918400927EC3 /* CafePosts.swift in Sources */,
 				1ACB7EB72689CD82009538EA /* PostListViewModelTests.swift in Sources */,
 				1AB78CB5268F6E35008029F0 /* DateUtil.swift in Sources */,
 				1AB78C9D268F1CE4008029F0 /* PostListViewModel.swift in Sources */,
 				1AB78CA5268F1CF0008029F0 /* Post.swift in Sources */,
+				1A313B4C26A5918100927EC3 /* BlogPosts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,7 +761,7 @@
 		};
 		1ACB7ECA2689CD82009538EA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 13FC1671A42E3966AA2EACC6 /* Pods-SearchBlogCafeTests.debug.xcconfig */;
+			baseConfigurationReference = 97B4B7D65D6189FDD35F128A /* Pods-SearchBlogCafe-SearchBlogCafeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -756,7 +784,7 @@
 		};
 		1ACB7ECB2689CD82009538EA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F1072C06502EBCD6E6839D4 /* Pods-SearchBlogCafeTests.release.xcconfig */;
+			baseConfigurationReference = 7F87204E7968621376D250EE /* Pods-SearchBlogCafe-SearchBlogCafeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

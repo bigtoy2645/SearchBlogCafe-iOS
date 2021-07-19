@@ -12,8 +12,9 @@ target 'SearchBlogCafe' do
   pod 'RxCocoa'
 
   target 'SearchBlogCafeTests' do
-    inherit! :search_paths
+    # inherit! :search_paths
     # Pods for testing
+	pod 'RxTest'
   end
 
   target 'SearchBlogCafeUITests' do

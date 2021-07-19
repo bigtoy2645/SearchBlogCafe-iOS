@@ -6,37 +6,106 @@
 //
 
 import XCTest
+import RxTest
+import RxSwift
+import RxCocoa
 
 class PostViewModelTests: XCTestCase {
     
+    private var vm: PostViewModel!
+    var scheduler: TestScheduler!
+    var disposeBag: DisposeBag!
+    
+    override func setUpWithError() throws {
+        vm = PostViewModel(Post.empty)
+        scheduler = TestScheduler(initialClock: 0)
+        disposeBag = DisposeBag()
+    }
+    
+    override func tearDownWithError() throws {
+        vm = nil
+    }
+    
     func test_typeString() {
-        let post = Post(type: Filter.blog, name: "", contents: "", date: "", thumbnail: "", title: "", url: "")
-        let vm = PostViewModel(post)
+        let type = scheduler.createObserver(String.self)
+
+        vm.typeString
+            .bind(to: type)
+            .disposed(by: disposeBag)
         
-        XCTAssertEqual(vm.typeString, "Blog")
+        scheduler.createColdObservable([
+            .next(210, Post(type: .blog, name: "", contents: "", date: "", thumbnail: "", title: "", url: "")),
+            .next(220, Post(type: .cafe, name: "", contents: "", date: "", thumbnail: "", title: "", url: "")),
+            .next(230, Post(type: .blog, name: "", contents: "", date: "", thumbnail: "", title: "", url: ""))
+        ])
+        .bind(to: vm.post)
+        .disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(type.events, [
+            .next(0, ""),
+            .next(210, "Blog"),
+            .next(220, "Cafe"),
+            .next(230, "Blog")
+            ])
     }
 
     func test_formatDate() {
-        let post = Post(type: Filter.blog, name: "", contents: "", date: "2021-06-02T09:02:20.000+09:00", thumbnail: "", title: "", url: "")
-        let vm = PostViewModel(post)
+        let longDate = scheduler.createObserver(String.self)
+        let shortDate = scheduler.createObserver(String.self)
+
+        vm.formatDate(style: .long)
+            .bind(to: longDate)
+            .disposed(by: disposeBag)
         
-        XCTAssertEqual(vm.formatDate(style: .long), "2021년 06월 02일 오전 09시 02분")
-        XCTAssertEqual(vm.formatDate(style: .short), "2021년 06월 02일")
+        vm.formatDate(style: .short)
+            .bind(to: shortDate)
+            .disposed(by: disposeBag)
+        
+        scheduler.createColdObservable([
+            .next(210, Post(type: .blog, name: "", contents: "", date: "2021-06-02T09:02:20.000+09:00", thumbnail: "", title: "", url: "")),
+            .next(220, Post(type: .cafe, name: "", contents: "", date: "2021-07-07T21:22:46.000+09:00", thumbnail: "", title: "", url: "")),
+            .next(230, Post(type: .blog, name: "", contents: "", date: "2021-05-01T19:27:05.000+09:00", thumbnail: "", title: "", url: ""))
+        ])
+        .bind(to: vm.post)
+        .disposed(by: disposeBag)
+        
+        scheduler.start()
+        
+        XCTAssertEqual(longDate.events, [
+            .next(0, ""),
+            .next(210, "2021년 06월 02일 오전 09시 02분"),
+            .next(220, "2021년 07월 07일 오후 09시 22분"),
+            .next(230, "2021년 05월 01일 오후 07시 27분")
+            ])
+        
+        XCTAssertEqual(shortDate.events, [
+            .next(0, ""),
+            .next(210, "2021년 06월 02일"),
+            .next(220, "2021년 07월 07일"),
+            .next(230, "2021년 05월 01일")
+            ])
     }
-    
+
     func test_alpha() {
-        var post = Post(type: Filter.blog, name: "", contents: "", date: "", thumbnail: "", title: "", url: "")
-        post.isRead = true
-        let vm = PostViewModel(post)
+        let alpha = scheduler.createObserver(Double.self)
+
+        vm.alpha
+            .bind(to: alpha)
+            .disposed(by: disposeBag)
         
-        XCTAssertEqual(vm.alpha, 0.3)
-    }
-    
-    func test_htmlEscaped() {
-        let post = Post(type: Filter.blog, name: "", contents: "\u{003c}b\u{003e}아이유\u{003c}/b\u{003e} 정규 5집 선공개 Concept Teaser 2021. 01. 27. 6PM Release", date: "", thumbnail: "", title: "\u{003c}b\u{003e}아이유\u{003c}/b\u{003e} 정규 5집 선공개 ＜Celebrity＞ Concept Teaser", url: "")
-        let vm = PostViewModel(post)
+        scheduler.createColdObservable([
+            .next(210, Post(type: .blog, name: "", contents: "", date: "", thumbnail: "", title: "", url: "", isRead: true)),
+        ])
+        .bind(to: vm.post)
+        .disposed(by: disposeBag)
         
-        XCTAssertEqual(vm.titleString, "아이유 정규 5집 선공개 ＜Celebrity＞ Concept Teaser")
-        XCTAssertEqual(vm.contentString, "아이유 정규 5집 선공개 Concept Teaser 2021. 01. 27. 6PM Release")
+        scheduler.start()
+        
+        XCTAssertEqual(alpha.events, [
+            .next(0, 1.0),
+            .next(210, 0.3)
+            ])
     }
 }
