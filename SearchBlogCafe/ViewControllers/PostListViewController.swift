@@ -67,10 +67,8 @@ class PostListViewController: UIViewController {
         guard let searchText = searchField.text else { return }
         
         // 데이터 요청
-        viewModel.searchKeyword = searchText
+        viewModel.searchKeyword.accept(searchText)
         if searchText.isEmpty { return }
-        
-        
         
         // 이전 검색 목록에 추가
         if let idx = searchDropDown.dataSource.firstIndex(of: searchText) {
@@ -88,9 +86,9 @@ class PostListViewController: UIViewController {
     @IBAction func sortButtonPressed(_ sender: UIButton) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "가나다순", style: .default,
-                                      handler: { action in self.viewModel.sort = .title }))
+                                      handler: { action in self.viewModel.sort.accept(.title) }))
         alert.addAction(UIAlertAction(title: "최신순", style: .default,
-                                      handler: { action in self.viewModel.sort = .date }))
+                                      handler: { action in self.viewModel.sort.accept(.date) }))
         alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
@@ -98,18 +96,15 @@ class PostListViewController: UIViewController {
     
     /* 필터 설정 */
     func configureFilter() {
-        filterDropDown.dataSource = ["All", "Blog", "Cafe"]
+        filterDropDown.dataSource = viewModel.filterList
         filterDropDown.anchorView = filterButton
         filterDropDown.bottomOffset = CGPoint(x: 0, y:(filterDropDown.anchorView?.plainView.bounds.height)!)
         filterDropDown.cornerRadius = 8
         filterDropDown.backgroundColor = .white
         filterDropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            filterButton.setTitle(item, for: .normal)
-            if index == 0       { viewModel.filter = .all }
-            else if index == 1  { viewModel.filter = .blog }
-            else if index == 2  { viewModel.filter = .cafe }
+            viewModel.filter.accept(Filter(rawValue: index) ?? .all)
             filterDropDown.clearSelection()
-            searchField.text = viewModel.searchKeyword
+            searchField.text = viewModel.searchKeyword.value
             searchButtonPressed(self)
         }
     }
@@ -145,13 +140,20 @@ class PostListViewController: UIViewController {
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { _ in
                 self.pagingSpinner.stopAnimating()
-                if self.viewModel.sort == .title {
-                    self.sortButton.setImage(UIImage(named: "sort-alphabet"), for: .normal)
-                } else if self.viewModel.sort == .date {
-                    self.sortButton.setImage(UIImage(named: "sort-time"), for: .normal)
-                }
                 self.tableView.reloadData()
             })
+            .disposed(by: disposeBag)
+        
+        viewModel.sort
+            .map { $0 == .title ? UIImage(named: "sort-alphabet") : UIImage(named: "sort-time") }
+            .bind(to: self.sortButton.rx.image())
+            .disposed(by: disposeBag)
+        
+        viewModel.filter
+            .map {
+                self.viewModel.filterList[$0.rawValue]
+            }
+            .bind(to: self.filterButton.rx.title())
             .disposed(by: disposeBag)
     }
 }
@@ -165,11 +167,7 @@ extension PostListViewController: UITableViewDelegate {
         guard let detailVC = self.storyboard?.instantiateViewController(withIdentifier: DetailViewController.storyboardID) as? DetailViewController else { return }
         detailVC.indexPath = indexPath
         detailVC.delegate = self
-        do {
-            try detailVC.viewModel = PostViewModel(viewModel.posts.value()[indexPath.row])
-        } catch {
-            print("no post data. \(error.localizedDescription)")
-        }
+        detailVC.viewModel = PostViewModel(viewModel.posts.value[indexPath.row])
         
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
@@ -181,7 +179,7 @@ extension PostListViewController: UITableViewDelegate {
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
         
         if distanceFromBottom <= height {
-            if !viewModel.searchKeyword.isEmpty {
+            if !viewModel.searchKeyword.value.isEmpty {
                 pagingSpinner.startAnimating()
                 viewModel.getPosts()
             }

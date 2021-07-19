@@ -19,7 +19,7 @@ struct Post {
 }
 
 extension Post: Equatable {
-    static let empty = Post(type: .blog, name: "", contents: "", date: "", thumbnail: "", title: "", url: "")
+    static let empty = Post(type: .all, name: "", contents: "", date: "", thumbnail: "", title: "", url: "")
     
     static func fromBlog(_ data: Blog) -> Post {
         return Post(type: .blog, name: data.blogname, contents: htmlEscaped(data.contents),

@@ -7,35 +7,44 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 class PostListViewModel: NSObject {
-    var posts = BehaviorSubject<[Post]>(value: [])
+    var posts = BehaviorRelay<[Post]>(value: [])
+    var sort = BehaviorRelay<Sort>(value: .title)
+    var searchKeyword = BehaviorRelay<String>(value: "")
+    var filter = BehaviorRelay<Filter>(value: .all)
+    var filterList = ["All", "Blog", "Cafe"]
+    
     var disposeBag = DisposeBag()
     
-    var sort: Sort = .title {
-        didSet {
-            if oldValue != sort {
-                posts.map {
-                    return (self.sort == .title ?
-                                $0.sorted { $0.title < $1.title } : $0.sorted { $0.date > $1.date })
+    private var page: Int = 0
+    
+    override init() {
+        super.init()
+        
+        sort
+        .subscribe(onNext: { sort in
+            self.posts.map {
+                return (sort == .title ?
+                            $0.sorted { $0.title < $1.title } : $0.sorted { $0.date > $1.date })
+            }
+            .take(1)
+            .subscribe(onNext: self.posts.accept(_:))
+            .disposed(by: self.disposeBag)
+        })
+        .disposed(by: disposeBag)
+        
+        searchKeyword
+            .subscribe(onNext: { keyword in
+                self.page = 0
+                if keyword.isEmpty {
+                    _ = BehaviorSubject.just([]).take(1).subscribe(onNext: self.posts.accept(_:))
+                } else {
+                    self.getPosts()
                 }
-                .take(1)
-                .subscribe(onNext: posts.onNext)
-                .disposed(by: disposeBag)
-            }
-        }
-    }
-    var filter: Filter = .all
-    var page: Int = 0
-    var searchKeyword: String = "" {
-        didSet {
-            page = 0
-            if searchKeyword.isEmpty {
-                _ = BehaviorSubject.just([]).take(1).subscribe(onNext: posts.onNext)
-            } else {
-                getPosts()
-            }
-        }
+            })
+            .disposed(by: disposeBag)
     }
     
     func setDim(at index: Int) {
@@ -51,7 +60,7 @@ class PostListViewModel: NSObject {
             return newPosts
         }
         .take(1)
-        .subscribe(onNext: posts.onNext)
+        .subscribe(onNext: posts.accept(_:))
     }
 }
 
@@ -68,27 +77,23 @@ extension PostListViewModel {
         Observable
             .zip(blog, cafe) { (blogPosts, cafePosts) in
                 var newPosts = [Post]()
-                do {
-                    if self.page > 1 { try newPosts = self.posts.value() }
-                    newPosts.append(contentsOf: blogPosts)
-                    newPosts.append(contentsOf: cafePosts)
-                    if self.sort == .title { newPosts.sort { $0.title < $1.title } }
-                    else if self.sort == .date { newPosts.sort { $0.date > $1.date } }
-                } catch {
-                    print(error.localizedDescription)
-                }
+                if self.page > 1 { newPosts = self.posts.value }
+                newPosts.append(contentsOf: blogPosts)
+                newPosts.append(contentsOf: cafePosts)
+                if self.sort.value == .title { newPosts.sort { $0.title < $1.title } }
+                else { newPosts.sort { $0.date > $1.date } }
                 return newPosts
             }
             .take(1)
-            .subscribe(onNext: self.posts.onNext)
+            .subscribe(onNext: self.posts.accept(_:))
             .disposed(by: disposeBag)
         
-        if (filter.rawValue & Filter.blog.rawValue) != 0 { searchBlogPosts().subscribe(onNext: blog.onNext) } else { blog.onNext([]) }
-        if (filter.rawValue & Filter.cafe.rawValue) != 0 { searchCafePosts().subscribe(onNext: cafe.onNext) } else { cafe.onNext([]) }
+        if filter.value != .cafe { searchBlogPosts().subscribe(onNext: blog.onNext) } else { blog.onNext([]) }
+        if filter.value != .blog { searchCafePosts().subscribe(onNext: cafe.onNext) } else { cafe.onNext([]) }
     }
     
     func searchBlogPosts() -> Observable<[Post]> {
-        return KakaoService.searchPostsRx(from: KakaoService.blogURL, for: searchKeyword, page: page)
+        return KakaoService.searchPostsRx(from: KakaoService.blogURL, for: searchKeyword.value, page: page)
             .map { data -> [Blog] in
                 guard let response = try? JSONDecoder().decode(BlogPosts.self, from: data) else {
                     throw NSError(domain: "Decoding error", code: -1, userInfo: nil)
@@ -106,7 +111,7 @@ extension PostListViewModel {
     }
     
     func searchCafePosts() -> Observable<[Post]> {
-        return KakaoService.searchPostsRx(from: KakaoService.cafeURL, for: searchKeyword, page: page)
+        return KakaoService.searchPostsRx(from: KakaoService.cafeURL, for: searchKeyword.value, page: page)
             .map { data -> [Cafe] in
                 guard let response = try? JSONDecoder().decode(CafePosts.self, from: data) else {
                     throw NSError(domain: "Decoding error", code: -1, userInfo: nil)
@@ -132,7 +137,7 @@ enum Sort: Int {
 }
 
 enum Filter: Int {
-    case blog = 0x01
-    case cafe = 0x02
-    case all = 0xFF
+    case all = 0
+    case blog = 1
+    case cafe = 2
 }

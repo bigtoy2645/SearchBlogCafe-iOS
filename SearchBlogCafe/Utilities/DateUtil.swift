@@ -14,13 +14,13 @@ class DateUtil {
     }
     
     /* String -> Date */
-    static func parseDate(_ dateString: String) -> Date {
+    static func parseDate(_ dateString: String) -> Date? {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
         formatter.calendar = Calendar(identifier: .iso8601)
         formatter.locale = Locale(identifier: "en_US_POSIX")
         
-        return formatter.date(from: dateString) ?? Date()
+        return formatter.date(from: dateString)
     }
     
     /* Date -> String */

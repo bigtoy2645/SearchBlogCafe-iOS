@@ -7,15 +7,16 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 class PostViewModel: NSObject {
     
-    var post = BehaviorSubject<Post>(value: Post.empty)
+    var post = BehaviorRelay<Post>(value: Post.empty)
     
     init(_ post: Post) {
         BehaviorSubject<Post>.just(post)
             .take(1)
-            .subscribe(onNext: self.post.onNext)
+            .subscribe(onNext: self.post.accept(_:))
     }
     
     lazy var typeString: Observable<String> = self.post.map {
@@ -39,7 +40,7 @@ class PostViewModel: NSObject {
     
     func formatDate(style: DateUtil.FormatStyle) -> Observable<String> {
         post.map {
-            let date = DateUtil.parseDate($0.date)
+            guard let date = DateUtil.parseDate($0.date) else { return "" }
             return DateUtil.formatDate(date, style: style)
         }
     }

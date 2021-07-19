@@ -16,7 +16,7 @@ class PostListTableViewCell: UITableViewCell {
     
     @IBOutlet weak var type: UILabel!  // Blog/Cafe
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var titleView: UITextView!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var thumbnail: UIImageView!
     
@@ -28,13 +28,6 @@ class PostListTableViewCell: UITableViewCell {
         
         // 이미지 둥글게
         self.thumbnail.layer.cornerRadius = 8
-        
-        // UITextView 여백 제거
-        titleView.removeTextPadding()
-        
-        // 타이틀 최대 2줄
-        titleView.textContainer.maximumNumberOfLines = 2
-        titleView.textContainer.lineBreakMode = .byTruncatingTail
     }
     
     func bind(post: Post) {
@@ -61,7 +54,7 @@ class PostListTableViewCell: UITableViewCell {
         viewModel.post
             .map { $0.title }
             .observe(on: MainScheduler.instance)
-            .bind(to: titleView.rx.text)
+            .bind(to: titleLabel.rx.text)
             .disposed(by: disposeBag)
         
         viewModel.formatDate(style: .short)

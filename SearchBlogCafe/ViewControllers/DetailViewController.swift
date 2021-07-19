@@ -94,11 +94,7 @@ class DetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == PostViewController.segueID,
            let postVC = segue.destination as? PostViewController {
-            do {
-                try postVC.viewModel = PostViewModel(viewModel.post.value())
-            } catch {
-                print("no post data. \(error.localizedDescription)")
-            }
+            postVC.viewModel = PostViewModel(viewModel.post.value)
         }
     }
 }
