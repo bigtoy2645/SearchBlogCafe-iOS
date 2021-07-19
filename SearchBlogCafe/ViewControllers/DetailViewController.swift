@@ -12,8 +12,8 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var thumbnail: UIImageView!
     @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var titleView: UITextView!
-    @IBOutlet weak var contents: UITextView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var contents: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var url: UILabel!
     @IBOutlet weak var imageContentConstraint: NSLayoutConstraint!
@@ -27,14 +27,6 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // UITextView 여백 제거
-        titleView.removeTextPadding()
-        contents.removeTextPadding()
-        
-        // 타이틀 최대 2줄
-        titleView.textContainer.maximumNumberOfLines = 2
-        titleView.textContainer.lineBreakMode = .byTruncatingTail
         
         // UI Binding
         setupBinding()
@@ -62,7 +54,7 @@ class DetailViewController: UIViewController {
         
         viewModel.post.map { $0.title }
             .observe(on: MainScheduler.instance)
-            .bind(to: titleView.rx.text)
+            .bind(to: titleLabel.rx.text)
             .disposed(by: disposeBag)
         
         viewModel.post.map { $0.contents }

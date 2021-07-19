@@ -140,7 +140,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nsl-ew-iWe" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="468"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xIw-Eo-I0b">
                                                 <rect key="frame" x="100" y="50" width="214" height="214"/>
@@ -149,7 +149,7 @@
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="3lo-n8-JpI">
-                                                <rect key="frame" x="20" y="314" width="374" height="186"/>
+                                                <rect key="frame" x="20" y="314" width="374" height="154"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cafe Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IHC-eu-0dG">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="18"/>
@@ -157,26 +157,26 @@
                                                         <color key="textColor" systemColor="systemGrayColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Title" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLd-MI-AUi">
-                                                        <rect key="frame" x="0.0" y="33" width="374" height="37.5"/>
-                                                        <color key="textColor" systemColor="labelColor"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4u-kD-jzm">
+                                                        <rect key="frame" x="0.0" y="33" width="374" height="21.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    </textView>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Contents" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ef-gF-UPM">
-                                                        <rect key="frame" x="0.0" y="85.5" width="374" height="34"/>
-                                                        <color key="textColor" systemColor="labelColor"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contents" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5TD-Sp-ibk">
+                                                        <rect key="frame" x="0.0" y="69.5" width="374" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    </textView>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhy-mf-BiD">
-                                                        <rect key="frame" x="0.0" y="134.5" width="374" height="14.5"/>
+                                                        <rect key="frame" x="0.0" y="102.5" width="374" height="14.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" systemColor="systemGrayColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="OkZ-gd-5Av">
-                                                        <rect key="frame" x="0.0" y="164" width="374" height="22"/>
+                                                        <rect key="frame" x="0.0" y="132" width="374" height="22"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1SH-nz-1Bt">
                                                                 <rect key="frame" x="0.0" y="0.0" width="29" height="22"/>
@@ -236,12 +236,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="G9x-Su-d0y"/>
                     <connections>
-                        <outlet property="contents" destination="4ef-gF-UPM" id="RJ8-kk-RSn"/>
+                        <outlet property="contents" destination="5TD-Sp-ibk" id="duB-dX-hLq"/>
                         <outlet property="date" destination="Vhy-mf-BiD" id="iL1-Mw-Nx9"/>
                         <outlet property="imageContentConstraint" destination="b7Y-yy-eyx" id="SO3-VX-AwP"/>
                         <outlet property="name" destination="IHC-eu-0dG" id="h8K-Lc-TY2"/>
                         <outlet property="thumbnail" destination="xIw-Eo-I0b" id="7dJ-Td-aUU"/>
-                        <outlet property="titleView" destination="WLd-MI-AUi" id="9D6-zE-7tV"/>
+                        <outlet property="titleLabel" destination="W4u-kD-jzm" id="fbT-eZ-Heg"/>
                         <outlet property="url" destination="1SH-nz-1Bt" id="UyP-hO-i4d"/>
                         <segue destination="Dt1-fb-LUK" kind="show" identifier="PostView" id="iz3-g8-1UN"/>
                     </connections>

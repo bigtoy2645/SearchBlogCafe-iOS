@@ -16,7 +16,6 @@
 		1A333ED3268D7AEC0045B971 /* PostListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333ECF268D7AEC0045B971 /* PostListTableViewCell.swift */; };
 		1A333ED4268D7AEC0045B971 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333ED0268D7AEC0045B971 /* PostListViewController.swift */; };
 		1A333ED8268D7B390045B971 /* UITableView+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333ED5268D7B390045B971 /* UITableView+Empty.swift */; };
-		1A333ED9268D7B390045B971 /* UITextView+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333ED6268D7B390045B971 /* UITextView+Padding.swift */; };
 		1A333EDC268D7B490045B971 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EDB268D7B490045B971 /* DateUtil.swift */; };
 		1A333EE4268D7BC70045B971 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A333EDD268D7BC70045B971 /* Assets.xcassets */; };
 		1A333EE5268D7BC70045B971 /* PostListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A333EDE268D7BC70045B971 /* PostListTableViewCell.xib */; };
@@ -65,7 +64,6 @@
 		1A333ECF268D7AEC0045B971 /* PostListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostListTableViewCell.swift; path = ViewControllers/PostListTableViewCell.swift; sourceTree = "<group>"; };
 		1A333ED0268D7AEC0045B971 /* PostListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostListViewController.swift; path = ViewControllers/PostListViewController.swift; sourceTree = "<group>"; };
 		1A333ED5268D7B390045B971 /* UITableView+Empty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+Empty.swift"; path = "Extentions/UITableView+Empty.swift"; sourceTree = "<group>"; };
-		1A333ED6268D7B390045B971 /* UITextView+Padding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITextView+Padding.swift"; path = "Extentions/UITextView+Padding.swift"; sourceTree = "<group>"; };
 		1A333EDB268D7B490045B971 /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateUtil.swift; path = Utilities/DateUtil.swift; sourceTree = "<group>"; };
 		1A333EDD268D7BC70045B971 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
 		1A333EDE268D7BC70045B971 /* PostListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostListTableViewCell.xib; path = Resources/PostListTableViewCell.xib; sourceTree = "<group>"; };
@@ -148,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				1A333ED5268D7B390045B971 /* UITableView+Empty.swift */,
-				1A333ED6268D7B390045B971 /* UITextView+Padding.swift */,
 			);
 			name = Extentions;
 			sourceTree = "<group>";
@@ -509,7 +506,6 @@
 				1AB78C94268DFB3D008029F0 /* PostViewModel.swift in Sources */,
 				1A333ECA268D7A700045B971 /* Post.swift in Sources */,
 				1A333EC9268D7A700045B971 /* CafePosts.swift in Sources */,
-				1A333ED9268D7B390045B971 /* UITextView+Padding.swift in Sources */,
 				1A333EF5268D94830045B971 /* KakaoService.swift in Sources */,
 				1A333ED8268D7B390045B971 /* UITableView+Empty.swift in Sources */,
 				1A333ED1268D7AEC0045B971 /* DetailViewController.swift in Sources */,
