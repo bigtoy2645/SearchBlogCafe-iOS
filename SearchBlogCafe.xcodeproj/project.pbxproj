@@ -11,6 +11,7 @@
 		1A313B4C26A5918100927EC3 /* BlogPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC8268D7A700045B971 /* BlogPosts.swift */; };
 		1A313B4D26A5918400927EC3 /* CafePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC6268D7A700045B971 /* CafePosts.swift */; };
 		1A313B5426A70A9A00927EC3 /* UITableView+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A313B5326A70A9A00927EC3 /* UITableView+Empty.swift */; };
+		1A313B5826A70B8200927EC3 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A313B5726A70B8200927EC3 /* PostViewModel.swift */; };
 		1A333EC9268D7A700045B971 /* CafePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC6268D7A700045B971 /* CafePosts.swift */; };
 		1A333ECA268D7A700045B971 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC7268D7A700045B971 /* Post.swift */; };
 		1A333ECB268D7A700045B971 /* BlogPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC8268D7A700045B971 /* BlogPosts.swift */; };
@@ -25,9 +26,7 @@
 		1A333EED268D7BD50045B971 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A333EEA268D7BD50045B971 /* Main.storyboard */; };
 		1A333EF0268D7CB20045B971 /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EEF268D7CB20045B971 /* PostListViewModel.swift */; };
 		1A333EF5268D94830045B971 /* KakaoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EF4268D94830045B971 /* KakaoService.swift */; };
-		1AB78C94268DFB3D008029F0 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB78C93268DFB3D008029F0 /* PostViewModel.swift */; };
 		1AB78C9D268F1CE4008029F0 /* PostListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EEF268D7CB20045B971 /* PostListViewModel.swift */; };
-		1AB78C9F268F1CE7008029F0 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB78C93268DFB3D008029F0 /* PostViewModel.swift */; };
 		1AB78CA5268F1CF0008029F0 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC7268D7A700045B971 /* Post.swift */; };
 		1AB78CB4268F59C6008029F0 /* PostViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB78CB3268F59C6008029F0 /* PostViewModelTests.swift */; };
 		1AB78CB5268F6E35008029F0 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EDB268D7B490045B971 /* DateUtil.swift */; };
@@ -60,6 +59,7 @@
 		121C7420F03A98ECCC39810C /* Pods-SearchBlogCafe-SearchBlogCafeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBlogCafe-SearchBlogCafeUITests.debug.xcconfig"; path = "Target Support Files/Pods-SearchBlogCafe-SearchBlogCafeUITests/Pods-SearchBlogCafe-SearchBlogCafeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		13FC1671A42E3966AA2EACC6 /* Pods-SearchBlogCafeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBlogCafeTests.debug.xcconfig"; path = "Target Support Files/Pods-SearchBlogCafeTests/Pods-SearchBlogCafeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1A313B5326A70A9A00927EC3 /* UITableView+Empty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+Empty.swift"; path = "Extensions/UITableView+Empty.swift"; sourceTree = "<group>"; };
+		1A313B5726A70B8200927EC3 /* PostViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostViewModel.swift; path = ViewModels/PostViewModel.swift; sourceTree = "<group>"; };
 		1A333EC6268D7A700045B971 /* CafePosts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CafePosts.swift; path = Models/CafePosts.swift; sourceTree = "<group>"; };
 		1A333EC7268D7A700045B971 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Post.swift; path = Models/Post.swift; sourceTree = "<group>"; };
 		1A333EC8268D7A700045B971 /* BlogPosts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlogPosts.swift; path = Models/BlogPosts.swift; sourceTree = "<group>"; };
@@ -74,7 +74,6 @@
 		1A333EEB268D7BD50045B971 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Resources/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1A333EEF268D7CB20045B971 /* PostListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostListViewModel.swift; path = ViewModels/PostListViewModel.swift; sourceTree = "<group>"; };
 		1A333EF4268D94830045B971 /* KakaoService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KakaoService.swift; path = Services/KakaoService.swift; sourceTree = "<group>"; };
-		1AB78C93268DFB3D008029F0 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		1AB78CB3268F59C6008029F0 /* PostViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModelTests.swift; sourceTree = "<group>"; };
 		1ACB7E9C2689CD80009538EA /* All Search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "All Search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ACB7E9F2689CD80009538EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -171,8 +170,8 @@
 		1A333EEE268D7BEE0045B971 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				1A313B5726A70B8200927EC3 /* PostViewModel.swift */,
 				1A333EEF268D7CB20045B971 /* PostListViewModel.swift */,
-				1AB78C93268DFB3D008029F0 /* PostViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -528,7 +527,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AB78C94268DFB3D008029F0 /* PostViewModel.swift in Sources */,
+				1A313B5826A70B8200927EC3 /* PostViewModel.swift in Sources */,
 				1A333ECA268D7A700045B971 /* Post.swift in Sources */,
 				1A333EC9268D7A700045B971 /* CafePosts.swift in Sources */,
 				1A333EF5268D94830045B971 /* KakaoService.swift in Sources */,
@@ -549,7 +548,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AB78CB4268F59C6008029F0 /* PostViewModelTests.swift in Sources */,
-				1AB78C9F268F1CE7008029F0 /* PostViewModel.swift in Sources */,
 				1A313B4B26A573D600927EC3 /* KakaoService.swift in Sources */,
 				1A313B4D26A5918400927EC3 /* CafePosts.swift in Sources */,
 				1ACB7EB72689CD82009538EA /* PostListViewModelTests.swift in Sources */,
