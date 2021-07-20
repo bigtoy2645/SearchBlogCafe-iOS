@@ -10,6 +10,7 @@
 		1A313B4B26A573D600927EC3 /* KakaoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EF4268D94830045B971 /* KakaoService.swift */; };
 		1A313B4C26A5918100927EC3 /* BlogPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC8268D7A700045B971 /* BlogPosts.swift */; };
 		1A313B4D26A5918400927EC3 /* CafePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC6268D7A700045B971 /* CafePosts.swift */; };
+		1A313B5426A70A9A00927EC3 /* UITableView+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A313B5326A70A9A00927EC3 /* UITableView+Empty.swift */; };
 		1A333EC9268D7A700045B971 /* CafePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC6268D7A700045B971 /* CafePosts.swift */; };
 		1A333ECA268D7A700045B971 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC7268D7A700045B971 /* Post.swift */; };
 		1A333ECB268D7A700045B971 /* BlogPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EC8268D7A700045B971 /* BlogPosts.swift */; };
@@ -17,7 +18,6 @@
 		1A333ED2268D7AEC0045B971 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333ECE268D7AEC0045B971 /* PostViewController.swift */; };
 		1A333ED3268D7AEC0045B971 /* PostListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333ECF268D7AEC0045B971 /* PostListTableViewCell.swift */; };
 		1A333ED4268D7AEC0045B971 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333ED0268D7AEC0045B971 /* PostListViewController.swift */; };
-		1A333ED8268D7B390045B971 /* UITableView+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333ED5268D7B390045B971 /* UITableView+Empty.swift */; };
 		1A333EDC268D7B490045B971 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A333EDB268D7B490045B971 /* DateUtil.swift */; };
 		1A333EE4268D7BC70045B971 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A333EDD268D7BC70045B971 /* Assets.xcassets */; };
 		1A333EE5268D7BC70045B971 /* PostListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A333EDE268D7BC70045B971 /* PostListTableViewCell.xib */; };
@@ -59,6 +59,7 @@
 /* Begin PBXFileReference section */
 		121C7420F03A98ECCC39810C /* Pods-SearchBlogCafe-SearchBlogCafeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBlogCafe-SearchBlogCafeUITests.debug.xcconfig"; path = "Target Support Files/Pods-SearchBlogCafe-SearchBlogCafeUITests/Pods-SearchBlogCafe-SearchBlogCafeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		13FC1671A42E3966AA2EACC6 /* Pods-SearchBlogCafeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchBlogCafeTests.debug.xcconfig"; path = "Target Support Files/Pods-SearchBlogCafeTests/Pods-SearchBlogCafeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1A313B5326A70A9A00927EC3 /* UITableView+Empty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+Empty.swift"; path = "Extensions/UITableView+Empty.swift"; sourceTree = "<group>"; };
 		1A333EC6268D7A700045B971 /* CafePosts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CafePosts.swift; path = Models/CafePosts.swift; sourceTree = "<group>"; };
 		1A333EC7268D7A700045B971 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Post.swift; path = Models/Post.swift; sourceTree = "<group>"; };
 		1A333EC8268D7A700045B971 /* BlogPosts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BlogPosts.swift; path = Models/BlogPosts.swift; sourceTree = "<group>"; };
@@ -66,7 +67,6 @@
 		1A333ECE268D7AEC0045B971 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostViewController.swift; path = ViewControllers/PostViewController.swift; sourceTree = "<group>"; };
 		1A333ECF268D7AEC0045B971 /* PostListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostListTableViewCell.swift; path = ViewControllers/PostListTableViewCell.swift; sourceTree = "<group>"; };
 		1A333ED0268D7AEC0045B971 /* PostListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostListViewController.swift; path = ViewControllers/PostListViewController.swift; sourceTree = "<group>"; };
-		1A333ED5268D7B390045B971 /* UITableView+Empty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+Empty.swift"; path = "Extentions/UITableView+Empty.swift"; sourceTree = "<group>"; };
 		1A333EDB268D7B490045B971 /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateUtil.swift; path = Utilities/DateUtil.swift; sourceTree = "<group>"; };
 		1A333EDD268D7BC70045B971 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = "<group>"; };
 		1A333EDE268D7BC70045B971 /* PostListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostListTableViewCell.xib; path = Resources/PostListTableViewCell.xib; sourceTree = "<group>"; };
@@ -149,12 +149,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1A333EC5268CBF780045B971 /* Extentions */ = {
+		1A333EC5268CBF780045B971 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				1A333ED5268D7B390045B971 /* UITableView+Empty.swift */,
+				1A313B5326A70A9A00927EC3 /* UITableView+Empty.swift */,
 			);
-			name = Extentions;
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		1A333ECC268D7ADD0045B971 /* ViewControllers */ = {
@@ -216,7 +216,7 @@
 				1A333EF1268D92EC0045B971 /* Services */,
 				1ACB7EDF268AD474009538EA /* Resources */,
 				1ACB7EDD268AD439009538EA /* Utilities */,
-				1A333EC5268CBF780045B971 /* Extentions */,
+				1A333EC5268CBF780045B971 /* Extensions */,
 				1ACB7E9F2689CD80009538EA /* AppDelegate.swift */,
 				1ACB7EAD2689CD82009538EA /* Info.plist */,
 			);
@@ -532,9 +532,9 @@
 				1A333ECA268D7A700045B971 /* Post.swift in Sources */,
 				1A333EC9268D7A700045B971 /* CafePosts.swift in Sources */,
 				1A333EF5268D94830045B971 /* KakaoService.swift in Sources */,
-				1A333ED8268D7B390045B971 /* UITableView+Empty.swift in Sources */,
 				1A333ED1268D7AEC0045B971 /* DetailViewController.swift in Sources */,
 				1A333ED4268D7AEC0045B971 /* PostListViewController.swift in Sources */,
+				1A313B5426A70A9A00927EC3 /* UITableView+Empty.swift in Sources */,
 				1A333EF0268D7CB20045B971 /* PostListViewModel.swift in Sources */,
 				1A333ECB268D7A700045B971 /* BlogPosts.swift in Sources */,
 				1A333ED3268D7AEC0045B971 /* PostListTableViewCell.swift in Sources */,
